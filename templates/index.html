@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Front page{% endblock %}
+{% block content %}
+
+{% if session.is_admin %}
+<p><a href="/new_film">Add new film</a></p>
+{% endif %}
+
+{% for film in films %}
+<p><b>Film:</b> <a href="film/{{ film[0] }}">{{ film[1] }}</a>
+<br>
+<b>Description:</b> {{ film[2] }}
+</p>
+<hr>
+{% endfor %}
+
+{% endblock %}

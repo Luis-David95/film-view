@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/static/main.css">
+
+<title>Film review app - {% block title %}{% endblock %}</title>
+{% if session.user_id %}
+<p>Logged in as {{ session["username"] }}
+<a href="/logout">Log out</a></p>
+{% else %}
+<a href="/login">Log in</a>
+{% endif %}
+
+<hr>
+{% block content %}{% endblock %}

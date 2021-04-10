@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Film{% endblock %}
+{% block content %}
+
+{% if session.user_id %}
+<p><a href="/film/{{ id }}/new_review">Add new review</a></p>
+{% endif %}
+
+<h3>{{ name }}</h3>
+
+{% for review in reviews %}
+<p><b>Review:</b> <a href="/film/{{ id }}/review/{{ thread[0] }}">{{ review[1] }}</a>
+<br>
+<b>Description:</b> {{ review[2] }}
+</p>
+<hr>
+{% endfor %}
+
+{% endblock %}
