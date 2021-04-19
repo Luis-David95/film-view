@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Add new film{% endblock %}
+{% block content %}
+
+<h3>Add new film</h3>
+
+<form action="/new_film" method="post">
+<p>Name: <br>
+<input type="text" name="name"></p>
+<p>Description: <br>
+<input type="text" name="description"></p>
+<p>Year: <br>
+<input type="text" name="year"></p>
+<p>Country: <br>
+<input type="text" name="country"></p>
+<p>Language: <br>
+<input type="text" name="language"></p>
+<p>Genre: <br>
+<input type="text" name="genre"></p>
+<p>Director: <br>
+<input type="text" name="director"></p>
+<p>Screenwriter: <br>
+<input type="text" name="screenwriter"></p>
+<input type="submit" value="Submit">
+</form>
+
+{% endblock %}

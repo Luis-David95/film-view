@@ -35,3 +35,19 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html",message="Registration failed")
+
+@app.route("/new_film", methods=["get","post"])
+def new_film():
+    if request.method == "GET":
+        return render_template("new_film.html")
+    if request.method == "POST":
+        name = request.form["name"]
+        if (len(name) == 0):
+            return render_template("error.html",message="Name cannot be empty")
+        description = request.form["description"]
+        if (len(description) == 0):
+            return render_template("error.html",message="Description cannot be empty")
+        if films.send(name, description):
+            return redirect("/")
+        else:
+            return render_template("error.html",message="Sending failed")
