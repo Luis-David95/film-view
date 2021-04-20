@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect, url_for
-import users, films
+import users, films, reviews
 
 @app.route("/")
 def index():
@@ -51,3 +51,9 @@ def new_film():
             return redirect("/")
         else:
             return render_template("error.html",message="Sending failed")
+
+@app.route("/film/<int:id>")
+def review(id):
+    name = films.get_name(id)
+    review_list = reviews.get_list(id)
+    return render_template("film.html", name=name, id=id, reviews=review_list)
