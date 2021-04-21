@@ -9,9 +9,10 @@
 <h3>{{ name }}</h3>
 
 {% for review in reviews %}
-<p><b>Review:</b> <a href="/film/{{ id }}/review/{{ review[0] }}">{{ review[1] }}</a>
+<p>Submitted by {{ review[0]}}</p>
+<p><b>Grade:</b> {{ review[2] }}</a>
 <br>
-<b>Description:</b> {{ review[2] }}
+<b>Review:</b> {{ review[1] }}
 </p>
 <hr>
 {% endfor %}

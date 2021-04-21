@@ -42,10 +42,10 @@ def new_film():
         return render_template("new_film.html")
     if request.method == "POST":
         name = request.form["name"]
-        if (len(name) == 0):
+        if len(name) == 0:
             return render_template("error.html",message="Name cannot be empty")
         description = request.form["description"]
-        if (len(description) == 0):
+        if len(description) == 0:
             return render_template("error.html",message="Description cannot be empty")
         if films.send(name, description):
             return redirect("/")
@@ -53,7 +53,26 @@ def new_film():
             return render_template("error.html",message="Sending failed")
 
 @app.route("/film/<int:id>")
-def review(id):
+def film(id):
     name = films.get_name(id)
     review_list = reviews.get_list(id)
     return render_template("film.html", name=name, id=id, reviews=review_list)
+
+@app.route("/film/<int:id>/new_review", methods=["get","post"])
+def new_review(id):
+    if request.method == "GET":
+        name = films.get_name(id)
+        return render_template("new_review.html", name=name, id=id)
+    if request.method == "POST":
+        grade = int(request.form["grade"])
+        if type(grade) is str or int(grade) < 1 or int(grade) > 10:
+            return render_template("error.html",message="Grade must be an integer with a value between 1-10")
+        content = request.form["content"]
+        if len(content) < 10:
+            return render_template("error.html",message="Review content too short or doesn't exist")
+        film_id = id
+        user_id = users.get_user_id()
+        if reviews.send(grade, content, film_id, user_id):
+            return redirect(url_for("film", id=id))
+        else:
+            return render_template("error.html",message="Sending failed")

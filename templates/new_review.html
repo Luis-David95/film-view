@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Add new review{% endblock %}
+{% block content %}
+
+<h3>Add new review</h3>
+
+<form action="/film/{{ id }}/new_review" method="post">
+<p>Grade: <br>
+<input type="text" name="grade">
+</p>
+<p>Content: <br>
+<textarea name="content" rows="10" cols="50"></textarea>
+</p>
+<input type="submit" value="Submit">
+</form>
+
+{% endblock %}
