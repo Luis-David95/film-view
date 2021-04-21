@@ -6,8 +6,8 @@ def get_list(film_id):
     result = db.session.execute(sql, {"film_id":film_id})
     return result.fetchall()
 
-def send(grade, content, film_id, user_id):
-    sql = "INSERT INTO reviews (grade, content, film_id, user_id) VALUES (:grade, :content, :film_id, :user_id)"
-    db.session.execute(sql, {"grade":grade, "content":content, "film_id":film_id, "user_id":user_id})
+def send(user_id, film_id, content, grade):
+    sql = "INSERT INTO reviews (user_id, film_id, content, grade) VALUES (:user_id, :film_id, :content, :grade)"
+    db.session.execute(sql, {"user_id":user_id, "film_id":film_id, "content":content, "grade":grade})
     db.session.commit()
     return True

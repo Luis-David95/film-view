@@ -64,15 +64,15 @@ def new_review(id):
         name = films.get_name(id)
         return render_template("new_review.html", name=name, id=id)
     if request.method == "POST":
-        grade = int(request.form["grade"])
-        if type(grade) is str or int(grade) < 1 or int(grade) > 10:
-            return render_template("error.html",message="Grade must be an integer with a value between 1-10")
+        user_id = users.get_user_id()
+        film_id = id
         content = request.form["content"]
         if len(content) < 10:
             return render_template("error.html",message="Review content too short or doesn't exist")
-        film_id = id
-        user_id = users.get_user_id()
-        if reviews.send(grade, content, film_id, user_id):
+        grade = int(request.form["grade"])
+        if type(grade) is str or int(grade) < 1 or int(grade) > 10:
+            return render_template("error.html",message="Grade must be an integer with a value between 1-10")
+        if reviews.send(user_id, film_id, content, grade):
             return redirect(url_for("film", id=id))
         else:
             return render_template("error.html",message="Sending failed")
