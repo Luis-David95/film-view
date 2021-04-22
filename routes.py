@@ -47,7 +47,10 @@ def new_film():
         description = request.form["description"]
         if len(description) == 0:
             return render_template("error.html",message="Description cannot be empty")
-        if films.send(name, description):
+        year = int(request.form["year"])
+        if year < 1888 or year > 2021:
+            return render_template("error.html",message="Please enter a correct year")
+        if films.send(name, description, year):
             return redirect("/")
         else:
             return render_template("error.html",message="Sending failed")
