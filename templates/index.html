@@ -3,15 +3,19 @@
 {% block content %}
 
 {% if session.is_admin %}
+<h2>Admin options</h2>
 <p><a href="/new_film">Add new film</a></p>
+<hr>
 {% endif %}
 
+<h2>Films</h2>
+<p>Get started by choosing a film</p>
+
 {% for film in films %}
-<p><b>Film:</b> <a href="film/{{ film[0] }}">{{ film[1] }}</a>
+<p><b>Film:</b> <a href="film/{{ film[0] }}">{{ film[1] }} ({{ film[3] }})</a>
 <br>
 <b>Description:</b> {{ film[2] }}
 </p>
-<hr>
 {% endfor %}
 
 {% endblock %}
