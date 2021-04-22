@@ -3,7 +3,7 @@
 
 <title>Film review app - {% block title %}{% endblock %}</title>
 {% if session.user_id %}
-<p>Logged in as {{ session["username"] }}
+<p><a href="/">Front page</a> | Logged in as {{ session["username"] }}
 <a href="/logout">Log out</a></p>
 {% else %}
 <a href="/login">Log in</a>
