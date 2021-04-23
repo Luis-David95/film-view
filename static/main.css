@@ -1,5 +1,15 @@
 body {
   margin: auto;
-  max-width: 80%;
+  max-width: 90%;
   margin-top: 10px;
+  background-color: #05121c;
+  color: white;
+}
+
+a:link {
+  color: #8bb4f7;
+}
+
+a:visited {
+  color: #9fc0f5;
 }
