@@ -30,11 +30,11 @@
 
 {% for review in reviews %}
 <p>
-<b>Submitted by</b> {{ review[1] }}
+<b>Submitted by</b> {{ review[0] }}
 <br>
-<b>Grade:</b> {{ review[3] }}
+<b>Grade:</b> {{ review[2] }}
 <br>
-<b>Review:</b> {{ review[2] }}
+<b>Review:</b> {{ review[1] }}
 </p>
 {% endfor %}
 
