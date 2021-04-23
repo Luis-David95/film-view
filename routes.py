@@ -57,9 +57,9 @@ def new_film():
 
 @app.route("/film/<int:id>")
 def film(id):
-    name = films.get_name(id)
     review_list = reviews.get_list(id)
-    return render_template("film.html", name=name, id=id, reviews=review_list)
+    film_list = films.get_details(id)
+    return render_template("film.html", id=id, reviews=review_list, details=film_list)
 
 @app.route("/film/<int:id>/new_review", methods=["get","post"])
 def new_review(id):

@@ -2,19 +2,40 @@
 {% block title %}Film{% endblock %}
 {% block content %}
 
+{% for detail in details %}
+<h2>{{ detail[1] }} ({{ detail[3] }}) </h2>
+<p>
+{{ detail[2] }}
+</p>
+<p>
+<!-- more details here -->
+<b>Country:</b> 
+<br>
+<b>Language:</b> 
+<br>
+<b>Genre:</b> 
+<br>
+<b>Director:</b> 
+<br>
+<b>Screenwriter:</b> 
+</p>
+{% endfor %}
+
+<hr>
+<h3>Reviews</h3>
+
 {% if session.user_id %}
 <p><a href="/film/{{ id }}/new_review">Add new review</a></p>
 {% endif %}
 
-<h3>{{ name }}</h3>
-
 {% for review in reviews %}
-<p>Submitted by {{ review[0]}}</p>
-<p><b>Grade:</b> {{ review[2] }}</a>
+<p>
+<b>Submitted by</b> {{ review[1] }}
 <br>
-<b>Review:</b> {{ review[1] }}
+<b>Grade:</b> {{ review[3] }}
+<br>
+<b>Review:</b> {{ review[2] }}
 </p>
-<hr>
 {% endfor %}
 
 {% endblock %}

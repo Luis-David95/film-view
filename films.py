@@ -6,6 +6,11 @@ def get_list():
     result = db.session.execute(sql)
     return result.fetchall()
 
+def get_details(id):
+    sql = "SELECT id, name, description, year FROM films WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchall()
+
 def get_name(id):
     sql = "SELECT name FROM films WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
