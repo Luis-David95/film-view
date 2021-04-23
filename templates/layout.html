@@ -2,8 +2,7 @@
 <link rel="stylesheet" href="/static/main.css">
 
 <title>Film review app - {% block title %}{% endblock %}</title>
-{% if session.user_id %}
-<p><a href="/">Front page</a> | Logged in as <b>{{ session["username"] }}</b>
+<p><a href="/">Front page</a> | {% if session.user_id %}Logged in as <b>{{ session["username"] }}</b>
 <a href="/logout">Log out</a></p>
 {% else %}
 <a href="/login">Log in</a>
