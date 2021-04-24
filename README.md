@@ -31,6 +31,7 @@ Lista päivitetty lauantaina 24.4.
   - Sanallinen arvostelu ✓
 - Käyttäjä voi hakea elokuvia elokuvan nimen, kuvauksen tai lajityypin perusteella
 - Elokuvalistaus on mahdollista ladata aakkosjärjestyksessä tai arvosanan perusteella parhaimmasta huonoimpaan
-- Ylläpitäjä voi lisätä elokuvia (✓)
+- Ylläpitäjä voi lisätä elokuvia ✓
+- Ylläpitäjä voi generoida listan maista ja maanosista ✓
 - Ylläpitäjä voi muokata käyttäjän tai elokuvan tietoja
 - Ylläpitäjä voi tarvittaessa poistaa käyttäjän antaman arvion
