@@ -3,10 +3,10 @@
 
 <title>Film review app - {% block title %}{% endblock %}</title>
 <p><a href="/">Front page</a> | {% if session.user_id %}Logged in as <b>{{ session["username"] }}</b>
-<a href="/logout">Log out</a></p>
+<a href="/logout">Log out</a>
 {% else %}
 <a href="/login">Log in</a>
-{% endif %}
+{% endif %}</p>
 
 <hr>
 {% block content %}{% endblock %}
