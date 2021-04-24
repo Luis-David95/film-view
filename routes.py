@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, redirect, url_for
-import users, films, reviews
+import users, films, reviews, countries
 
 @app.route("/")
 def index():
@@ -35,6 +35,16 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html",message="Registration failed")
+
+@app.route("/countries", methods=["get","post"])
+def country():
+    if request.method == "GET":
+        return render_template("countries.html")
+    if request.method == "POST":
+        if countries.create_list():
+            return render_template("success.html",message="Country list created successfully")
+        else:
+            return render_template("error.html",message="Creating country list failed, perhaps it already exists?")
 
 @app.route("/new_film", methods=["get","post"])
 def new_film():

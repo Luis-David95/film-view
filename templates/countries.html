@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Countries{% endblock %}
+{% block content %}
+
+<h3>Countries</h3>
+
+<p>Use this button to generate a list of countries to be used by the application.
+<br>Please note that you can only press the button once.</p>
+
+<form action="/countries" method="post">
+    <input type="submit" name="create" value="Create!" />
+</form>
+
+
+{% endblock %}
