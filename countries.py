@@ -38,6 +38,6 @@ def create_list():
     return True
         
 def get_list():
-    sql = "SELECT id, name, continent_id FROM countries"
+    sql = "SELECT id, name FROM countries"
     result = db.session.execute(sql)
     return result.fetchall()

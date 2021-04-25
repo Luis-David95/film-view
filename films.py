@@ -2,12 +2,12 @@ from db import db
 import users
 
 def get_list():
-    sql = "SELECT id, name, description, year FROM films"
+    sql = "SELECT f.id, f.name, f.description, f.year, c.name FROM films AS f, countries AS c WHERE c.id=f.country_id"
     result = db.session.execute(sql)
     return result.fetchall()
 
 def get_details(id):
-    sql = "SELECT id, name, description, year FROM films WHERE id=:id"
+    sql = "SELECT f.id, f.name, f.description, f.year, c.name FROM films AS f, countries AS c WHERE f.id=:id AND c.id=f.country_id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 
@@ -16,8 +16,8 @@ def get_name(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()[0]
 
-def send(name, description, year):
-    sql = "INSERT INTO films (name, description, year) VALUES (:name, :description, :year)"
-    db.session.execute(sql, {"name":name, "description":description, "year":year})
+def send(name, description, year, country_id):
+    sql = "INSERT INTO films (name, description, year, country_id) VALUES (:name, :description, :year, :country_id)"
+    db.session.execute(sql, {"name":name, "description":description, "year":year, "country_id":country_id})
     db.session.commit()
     return True

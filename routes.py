@@ -17,7 +17,7 @@ def login():
         if users.login(username,password):
             return redirect("/")
         else:
-            return render_template("error.html",message="Wrong username or password")
+            return render_template("error.html", message="Wrong username or password")
 
 @app.route("/logout")
 def logout():
@@ -34,7 +34,7 @@ def register():
         if users.register(username,password):
             return redirect("/")
         else:
-            return render_template("error.html",message="Registration failed")
+            return render_template("error.html", message="Registration failed")
 
 @app.route("/countries", methods=["get","post"])
 def country():
@@ -42,28 +42,30 @@ def country():
         return render_template("countries.html")
     if request.method == "POST":
         if countries.create_list():
-            return render_template("success.html",message="Country list created successfully")
+            return render_template("success.html", message="Country list created successfully")
         else:
-            return render_template("error.html",message="Creating country list failed, perhaps it already exists?")
+            return render_template("error.html", message="Creating country list failed, perhaps it already exists?")
 
 @app.route("/new_film", methods=["get","post"])
 def new_film():
     if request.method == "GET":
-        return render_template("new_film.html")
+        list = countries.get_list()
+        return render_template("new_film.html", countries=list)
     if request.method == "POST":
         name = request.form["name"]
         if len(name) == 0:
-            return render_template("error.html",message="Name cannot be empty")
+            return render_template("error.html", message="Name cannot be empty")
         description = request.form["description"]
         if len(description) == 0:
-            return render_template("error.html",message="Description cannot be empty")
+            return render_template("error.html", message="Description cannot be empty")
         year = int(request.form["year"])
         if year < 1888 or year > 2021:
-            return render_template("error.html",message="Please enter a correct year")
-        if films.send(name, description, year):
+            return render_template("error.html", message="Please enter a correct year")
+        country_id = int(request.form["country_id"])
+        if films.send(name, description, year, country_id):
             return redirect("/")
         else:
-            return render_template("error.html",message="Sending failed")
+            return render_template("error.html", message="Sending failed")
 
 @app.route("/film/<int:id>")
 def film(id):
@@ -81,11 +83,11 @@ def new_review(id):
         film_id = id
         content = request.form["content"]
         if len(content) < 10:
-            return render_template("error.html",message="Review content too short or doesn't exist")
+            return render_template("error.html", message="Review content too short or doesn't exist")
         grade = int(request.form["grade"])
         if type(grade) is str or int(grade) < 1 or int(grade) > 10:
-            return render_template("error.html",message="Grade must be an integer with a value between 1-10")
+            return render_template("error.html", message="Grade must be an integer with a value between 1-10")
         if reviews.send(user_id, film_id, content, grade):
             return redirect(url_for("film", id=id))
         else:
-            return render_template("error.html",message="Sending failed")
+            return render_template("error.html", message="Sending failed")

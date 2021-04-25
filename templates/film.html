@@ -3,14 +3,16 @@
 {% block content %}
 
 {% for detail in details %}
-<h2>{{ detail[1] }} ({{ detail[3] }}) </h2>
+<h2>{{ detail[1] }}</h2>
 <p>
 {{ detail[2] }}
 </p>
 <p>
-<!-- more details here -->
-<b>Country:</b> 
+<b>Year: </b> {{ detail[3] }}
 <br>
+<b>Country:</b> {{ detail[4] }}
+<br>
+<!-- more details here -->
 <b>Language:</b> 
 <br>
 <b>Genre:</b> 
