@@ -6,12 +6,14 @@ Sovelluksessa listataan tietoa elokuvista, joille käyttäjät voivat kirjoittaa
 
 Sovellusta voi testata osoitteessa https://tsoha-elokuvasovellus.herokuapp.com/  
 
-Sovelluksessa on yksi pääkäyttäjä, jonka tunnus on **admin** ja salasana **password**. Vain tälle käyttäjälle on näkyvissä etusivulla "admin-paneeli", jonka kautta voidaan lisätä uusia elokuvia sovellukseen. Sovelluksen testaamista varten kannattaa luoda uusi käyttäjätunnus, joka on oletuksena tavallinen käyttäjä. Ylläpitäjätunnuksella voi testata elokuvan lisäämistä.
+Sovelluksessa on yksi pääkäyttäjä, jonka tunnus on **admin** ja salasana **password**. Vain tälle käyttäjälle on näkyvissä etusivulla "admin-paneeli", jonka kautta voidaan lisätä uusia elokuvia sovellukseen. Ylläpitäjätunnuksella voi testata uuden elokuvan lisäämistä. Huomaathan, että maalistauksen generoiva painike ei toimi Herokussa enää toista kertaa, sillä sitä on jo painettu. Sen toimivuuden voi todeta uutta elokuvaa luodessa siitä, että valikosta löytyy lista maista, jotka on luettu tiedostosta [countries.csv](https://github.com/rvrauhala/tsoha-elokuvasovellus/blob/main/data/countries.csv). Katso myös tiedosto [countries.py](https://github.com/rvrauhala/tsoha-elokuvasovellus/blob/main/countries.py), josta löytyy listauksen generoiva koodi. 
+
+Sovelluksen testaamista ja elokuva-arvosteluiden lisäämistä varten kannattaa luoda uusi käyttäjätunnus, joka on oletuksena tavallinen käyttäjä.
 
 ## Ominaisuudet
 
 Toteutetut ja toimivat ominaisuudet on merkittu "✓"-tunnuksella.  
-Lista päivitetty lauantaina 24.4.
+Lista päivitetty sunnuntaina 25.4.
 
 - Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen ✓
 - Käyttäjä on peruskäyttäjä tai ylläpitäjä ✓
@@ -19,10 +21,10 @@ Lista päivitetty lauantaina 24.4.
 - Elokuvan nimeä klikkaamalla saadaan näkyviin lisää tietoa elokuvasta:
   - Nimi (name) ✓
   - Kuvaus (description) ✓
-  - Lajityyppi (genre)
   - Julkaisuvuosi (year) ✓
-  - Julkaisumaa (country)
+  - Julkaisumaa (country) ✓
   - Kieli (language)
+  - Lajityyppi (genre)
   - Ohjaaja (director)
   - Käsikirjoittaja (screenwriter)
 - Käyttäjä voi antaa arvion elokuvasta ja lukea muiden antamia arvioita ✓
@@ -32,6 +34,7 @@ Lista päivitetty lauantaina 24.4.
 - Käyttäjä voi hakea elokuvia elokuvan nimen, kuvauksen tai lajityypin perusteella
 - Elokuvalistaus on mahdollista ladata aakkosjärjestyksessä tai arvosanan perusteella parhaimmasta huonoimpaan
 - Ylläpitäjä voi lisätä elokuvia ✓
+- Ylläpitäjä voi poistaa elokuvan tietokannasta
 - Ylläpitäjä voi generoida listan maista ja maanosista ✓
 - Ylläpitäjä voi muokata käyttäjän tai elokuvan tietoja
 - Ylläpitäjä voi tarvittaessa poistaa käyttäjän antaman arvion
