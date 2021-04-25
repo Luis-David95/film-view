@@ -38,3 +38,10 @@ Lista päivitetty sunnuntaina 25.4.
 - Ylläpitäjä voi generoida listan maista ja maanosista ✓
 - Ylläpitäjä voi muokata käyttäjän tai elokuvan tietoja
 - Ylläpitäjä voi tarvittaessa poistaa käyttäjän antaman arvion
+
+## To-do
+
+- Puuttuvien ominaisuuksien toteuttaminen
+- Syötteiden validoinnin lisääminen ja tarkentaminen
+- CSRF-haavoittuvuuden korjaaminen
+- Ulkoasun ja käyttöliittymän parantelua
