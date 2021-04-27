@@ -3,6 +3,11 @@
 {% block content %}
 
 {% for detail in details %}
+
+{% if session.is_admin %}
+<p><b>Admin options: </b><a class="admin" href="/">[Edit]</a> <a class="admin" href="/delete/{{ detail[0] }}">[Delete]</a></p>
+{% endif %}
+
 <h2>{{ detail[1] }}</h2>
 <p>
 {{ detail[2] }}

@@ -67,6 +67,17 @@ def new_film():
         else:
             return render_template("error.html", message="Sending failed")
 
+@app.route("/delete/<int:id>", methods=["get","post"])
+def delete(id):
+    if request.method == "GET":
+        name = films.get_name(id)
+        return render_template("delete.html", name=name, id=id)
+    if request.method == "POST":
+        if films.delete(id):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Deleting film failed")
+
 @app.route("/film/<int:id>")
 def film(id):
     review_list = reviews.get_list(id)

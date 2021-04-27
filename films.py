@@ -22,3 +22,9 @@ def send(name, description, year, country_id):
     db.session.execute(sql, {"visible":visible, "name":name, "description":description, "year":year, "country_id":country_id})
     db.session.commit()
     return True
+
+def delete(id):
+    sql = "UPDATE films SET visible=0 WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True

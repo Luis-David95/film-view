@@ -13,3 +13,11 @@ a:link {
 a:visited {
   color: #9fc0f5;
 }
+
+a.admin:link {
+  color: #f73441;
+}
+
+a.admin:visited {
+  color: #f73441;
+}

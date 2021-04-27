@@ -19,7 +19,12 @@
 <p><b>Film:</b> <a href="film/{{ film[0] }}">{{ film[1] }} ({{ film[3] }})</a>
 <br>
 <b>Description:</b> {{ film[2] }}
+{% if session.is_admin %}
+<br>
+<b>Admin options: </b><a class="admin" href="/">[Edit]</a> <a class="admin" href="/delete/{{ film[0] }}">[Delete]</a>
+{% endif %}
 </p>
+
 {% endfor %}
 
 {% endblock %}

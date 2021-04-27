@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Delete film{% endblock %}
+{% block content %}
+
+<h3>Delete film</h3>
+
+<p>Are you sure you want to delete film <b>{{ name }}</b>?</p>
+
+<form action="/delete/{{ id }}" method="post">
+    <input type="submit" value="Yes" />
+</form>
+
+{% endblock %}
