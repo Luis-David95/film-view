@@ -43,6 +43,7 @@ CREATE TABLE genres (
 
 CREATE TABLE films (
     id SERIAL PRIMARY KEY,
+    visible INTEGER,
     name TEXT,
     description TEXT,
     year INTEGER,
