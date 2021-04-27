@@ -13,7 +13,7 @@ Sovelluksen testaamista ja elokuva-arvosteluiden lisäämistä varten kannattaa 
 
 ## Ominaisuudet
 
-Toteutetut ja toimivat ominaisuudet on merkittu "✓"-tunnuksella.  
+Toteutetut ja toimivat ominaisuudet on merkitty "✓"-tunnuksella.  
 Lista päivitetty tiistaina 27.4.
 
 - Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen ✓
