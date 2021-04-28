@@ -89,6 +89,8 @@ def film(id):
 @app.route("/film/<int:id>/new_review", methods=["get","post"])
 def new_review(id):
     if request.method == "GET":
+        if not films.exists(id):
+            return render_template("error.html", message="This film does not exist")
         name = films.get_name(id)
         return render_template("new_review.html", name=name, id=id)
     if request.method == "POST":
@@ -98,8 +100,6 @@ def new_review(id):
         if len(content) < 10:
             return render_template("error.html", message="Review content too short or doesn't exist")
         grade = int(request.form["grade"])
-        if type(grade) is str or int(grade) < 1 or int(grade) > 10:
-            return render_template("error.html", message="Grade must be an integer with a value between 1-10")
         if reviews.send(user_id, film_id, content, grade):
             return redirect(url_for("film", id=id))
         else:

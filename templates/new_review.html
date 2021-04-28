@@ -4,12 +4,19 @@
 
 <h3>Add new review</h3>
 
+<p>You are adding a new review for the film <b>{{ name }}</b>.
+<br>Please choose a grade and write a short review below.</p>
+
 <form action="/film/{{ id }}/new_review" method="post">
 <p>Grade: <br>
-<input type="text" name="grade">
+    <select name="grade">
+        {% for n in range(1,11) %}
+        <option value="{{ n }}" selected>{{ n }}</option>
+        {% endfor %}
+    </select>
 </p>
-<p>Content: <br>
-<textarea name="content" rows="10" cols="50"></textarea>
+<p>Review: <br>
+<textarea name="content" rows="15" cols="60"></textarea>
 </p>
 <input type="submit" value="Submit">
 </form>
