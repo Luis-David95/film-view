@@ -10,7 +10,7 @@ def create_list():
         return False
 
     sql = "INSERT INTO continents (name) VALUES " \
-    "('Africa'), ('Asia'), ('Europe'), ('North America'), ('South America'), ('Oceania')"
+          "('Africa'), ('Asia'), ('Europe'), ('North America'), ('South America'), ('Oceania')"
     db.session.execute(sql)
     db.session.commit()
 
