@@ -70,6 +70,8 @@ def new_film():
 @app.route("/delete/<int:id>", methods=["get","post"])
 def delete(id):
     if request.method == "GET":
+        if not films.exists(id):
+            return render_template("error.html", message="This film does not exist")
         name = films.get_name(id)
         return render_template("delete.html", name=name, id=id)
     if request.method == "POST":
