@@ -21,3 +21,11 @@ a.admin:link {
 a.admin:visited {
   color: #f73441;
 }
+
+#error {
+  color: red;
+}
+
+#success {
+  color: green;
+}
