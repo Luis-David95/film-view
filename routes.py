@@ -1,6 +1,6 @@
 from app import app
-from flask import render_template, request, redirect, url_for
-import users, films, reviews, countries
+from flask import redirect, render_template, request, url_for
+import countries, films, reviews, users
 
 @app.route("/")
 def index():
