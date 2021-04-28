@@ -1,5 +1,9 @@
 from db import db
-import users
+
+def exists(id):
+    sql = "SELECT COUNT(1) FROM films WHERE id=:id AND visible=1"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchone()[0]
 
 def get_list():
     sql = "SELECT f.id, f.name, f.description, f.year, c.name FROM films AS f, countries AS c WHERE c.id=f.country_id AND visible=1"

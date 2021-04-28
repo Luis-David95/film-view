@@ -80,6 +80,8 @@ def delete(id):
 
 @app.route("/film/<int:id>")
 def film(id):
+    if not films.exists(id):
+        return render_template("error.html", message="This film does not exist")
     review_list = reviews.get_list(id)
     film_list = films.get_details(id)
     return render_template("film.html", id=id, reviews=review_list, details=film_list)
