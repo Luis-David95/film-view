@@ -1,6 +1,6 @@
 from app import app
 from flask import redirect, render_template, request, url_for
-import countries, films, languages, reviews, users
+import countries, films, genres, languages, reviews, users
 
 @app.route("/")
 def index():
@@ -51,14 +51,19 @@ def new_film():
     if request.method == "GET":
         country_list = countries.get_list()
         language_list = languages.get_list()
-        return render_template("new_film.html", countries=country_list, languages=language_list)
+        genre_list = genres.get_list()
+        return render_template("new_film.html", countries=country_list, languages=language_list, genres=genre_list)
     if request.method == "POST":
         name = request.form["name"]
         if len(name) == 0:
             return render_template("error.html", message="Name cannot be empty")
+        if len(name) > 50:
+            return render_template("error.html", message="Name is too long")
         description = request.form["description"]
         if len(description) == 0:
             return render_template("error.html", message="Description cannot be empty")
+        if len(description) > 500:
+            return render_template("error.html", message="Description is too long")
         year = int(request.form["year"])
         if year < 1888 or year > 2021:
             return render_template("error.html", message="Please enter a correct year")
@@ -68,7 +73,12 @@ def new_film():
             new_language = request.form["new_language"]
             languages.send(new_language)
             language_id = languages.count()
-        if films.send(name, description, year, country_id, language_id):
+        genre_id = int(request.form["genre_id"])
+        if genre_id == 0:
+            new_genre = request.form["new_genre"]
+            genres.send(new_genre)
+            genre_id = genres.count()
+        if films.send(name, description, year, country_id, language_id, genre_id):
             return redirect("/")
         else:
             return render_template("error.html", message="Sending failed")

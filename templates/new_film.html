@@ -31,9 +31,15 @@
             <option value="{{ language[0] }}">{{ language[1] }}</option>
             {% endfor %}
         </select>
-        <input type="text" name="new_language" placeholder="New language"></p>
+    <input type="text" name="new_language" placeholder="New language"></p>
     <p>Genre: <br>
-    <input type="text" name="genre" placeholder="Genre"></p>
+        <select name="genre_id">
+            <option value="0" selected>New genre</option>
+            {% for genre in genres %}
+            <option value="{{ genre[0] }}">{{ genre[1] }}</option>
+            {% endfor %}
+        </select>
+    <input type="text" name="new_genre" placeholder="New genre"></p>
     <p>Director: <br>
     <input type="text" name="director" placeholder="Director"></p>
     <p>Screenwriter: <br>
