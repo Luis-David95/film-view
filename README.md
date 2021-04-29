@@ -14,7 +14,7 @@ Sovelluksen testaamista ja elokuva-arvosteluiden lisäämistä varten kannattaa 
 ## Ominaisuudet
 
 Toteutetut ja toimivat ominaisuudet on merkitty "✓"-tunnuksella.  
-Lista päivitetty tiistaina 27.4.
+Lista päivitetty torstaina 29.4.
 
 - Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen ✓
 - Käyttäjä on peruskäyttäjä tai ylläpitäjä ✓
@@ -24,8 +24,8 @@ Lista päivitetty tiistaina 27.4.
   - Kuvaus (description) ✓
   - Julkaisuvuosi (year) ✓
   - Julkaisumaa (country) ✓
-  - Kieli (language)
-  - Lajityyppi (genre)
+  - Kieli (language) ✓
+  - Lajityyppi (genre) ✓
   - Ohjaaja (director)
   - Käsikirjoittaja (screenwriter)
 - Käyttäjä voi antaa arvion elokuvasta ja lukea muiden antamia arvioita ✓
