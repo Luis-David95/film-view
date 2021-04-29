@@ -19,32 +19,32 @@ CREATE TABLE users (
 
 CREATE TABLE directors (
     id SERIAL PRIMARY KEY,
-    name TEXT,
+    name TEXT UNIQUE,
     description TEXT,
     country_id INTEGER REFERENCES countries
 );
 
 CREATE TABLE screenwriters (
     id SERIAL PRIMARY KEY,
-    name TEXT,
+    name TEXT UNIQUE,
     description TEXT,
     country_id INTEGER REFERENCES countries
 );
 
 CREATE TABLE languages (
     id SERIAL PRIMARY KEY,
-    name TEXT
+    name TEXT UNIQUE
 );
 
 CREATE TABLE genres (
     id SERIAL PRIMARY KEY,
-    name TEXT
+    name TEXT UNIQUE
 );
 
 CREATE TABLE films (
     id SERIAL PRIMARY KEY,
     visible INTEGER,
-    name TEXT,
+    name TEXT UNIQUE,
     description TEXT,
     year INTEGER,
     country_id INTEGER REFERENCES countries,
