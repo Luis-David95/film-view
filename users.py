@@ -48,6 +48,13 @@ def is_admin(username):
     else:
         return True
 
-def require_admin_status():
-    if not is_admin(session.get("username")):
-        abort(403)
+def require_status(level):
+    if level == 0:
+        id = get_user_id()
+        if id == 0:
+            abort(403)
+    elif level == 1:
+        if not is_admin(session.get("username")):
+            abort(403)
+    else:
+        abort(500)

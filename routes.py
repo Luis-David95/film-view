@@ -39,7 +39,7 @@ def register():
 @app.route("/countries", methods=["get","post"])
 def country():
     if request.method == "GET":
-        users.require_admin_status()
+        users.require_status(1)
         count = countries.count()
         return render_template("countries.html", count=count)
     if request.method == "POST":
@@ -51,7 +51,7 @@ def country():
 @app.route("/new_film", methods=["get","post"])
 def new_film():
     if request.method == "GET":
-        users.require_admin_status()
+        users.require_status(1)
         country_list = countries.get_list()
         language_list = languages.get_list()
         genre_list = genres.get_list()
@@ -90,7 +90,7 @@ def new_film():
 def delete(id):
     if request.method == "GET":
         films.exists(id)
-        users.require_admin_status()
+        users.require_status(1)
         name = films.get_name(id)
         return render_template("delete.html", name=name, id=id)
     if request.method == "POST":
@@ -109,6 +109,7 @@ def film(id):
 @app.route("/film/<int:id>/new_review", methods=["get","post"])
 def new_review(id):
     if request.method == "GET":
+        users.require_status(0)
         films.exists(id)
         name = films.get_name(id)
         return render_template("new_review.html", name=name, id=id)
