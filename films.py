@@ -1,9 +1,11 @@
+from flask import abort
 from db import db
 
 def exists(id):
     sql = "SELECT COUNT(1) FROM films WHERE id=:id AND visible=1"
     result = db.session.execute(sql, {"id":id})
-    return result.fetchone()[0]
+    if result.fetchone()[0] == 0:
+        abort(404)
 
 def get_list():
     sql = "SELECT f.id, f.visible, f.name, f.description, f.year, c.name " \

@@ -4,11 +4,18 @@
 
 <h3>Countries</h3>
 
+<p><b>Status: </b>
+{% if count == 192 %}<span class="success">List created, {{ count }} / 192 countries in database</span>
+{% else %}<span class="error">Ready to create list, {{ count }} / 192 countries in database</span>
+{% endif %}</p>
+
+{% if count == 0 %}
 <p>Use this button to generate a list of countries to be used by the application.
 <br>Please note that you can only press the button once.</p>
 
 <form action="/countries" method="post">
     <input type="submit" name="create" value="Create!" />
 </form>
+{% endif %}
 
 {% endblock %}

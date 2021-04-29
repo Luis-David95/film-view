@@ -1,15 +1,15 @@
 from db import db
-from flask import session
+from flask import abort, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
-def login(username,password):
+def login(username, password):
     sql = "SELECT password, id, username FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
     if user == None:
         return False
     else:
-        if check_password_hash(user[0],password):
+        if check_password_hash(user[0], password):
             session["user_id"] = user[1]
             session["username"] = user[2]
             if is_admin(username):
@@ -25,7 +25,7 @@ def logout():
     del session["username"]
     del session["is_admin"]
 
-def register(username,password):
+def register(username, password):
     hash_value = generate_password_hash(password)
     admin = 0
     try:
@@ -34,16 +34,20 @@ def register(username,password):
         db.session.commit()
     except:
         return False
-    return login(username,password)
+    return login(username, password)
 
 def get_user_id():
-    return session.get("user_id",0)
+    return session.get("user_id", 0)
 
 def is_admin(username):
     sql = "SELECT admin FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     admin = result.fetchone()
-    if admin[0] == 1:
-        return True
-    else:
+    if not admin or admin[0] == 0:
         return False
+    else:
+        return True
+
+def require_admin_status():
+    if not is_admin(session.get("username")):
+        abort(403)

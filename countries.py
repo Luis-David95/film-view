@@ -1,6 +1,11 @@
 import csv
 from db import db
 
+def count():
+    sql = "SELECT COUNT(*) FROM countries"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
 def create_list():
     sql = "SELECT COUNT(*) FROM continents"
     result = db.session.execute(sql)

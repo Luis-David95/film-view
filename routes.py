@@ -14,7 +14,7 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.login(username,password):
+        if users.login(username, password):
             return redirect("/")
         else:
             return render_template("error.html", message="Wrong username or password")
@@ -31,7 +31,7 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.register(username,password):
+        if users.register(username, password):
             return redirect("/")
         else:
             return render_template("error.html", message="Registration failed")
@@ -39,16 +39,19 @@ def register():
 @app.route("/countries", methods=["get","post"])
 def country():
     if request.method == "GET":
-        return render_template("countries.html")
+        users.require_admin_status()
+        count = countries.count()
+        return render_template("countries.html", count=count)
     if request.method == "POST":
         if countries.create_list():
-            return render_template("success.html", message="Country list created successfully")
+            return redirect("/countries")
         else:
             return render_template("error.html", message="Creating country list failed, perhaps it already exists?")
 
 @app.route("/new_film", methods=["get","post"])
 def new_film():
     if request.method == "GET":
+        users.require_admin_status()
         country_list = countries.get_list()
         language_list = languages.get_list()
         genre_list = genres.get_list()
@@ -86,8 +89,8 @@ def new_film():
 @app.route("/delete/<int:id>", methods=["get","post"])
 def delete(id):
     if request.method == "GET":
-        if not films.exists(id):
-            return render_template("error.html", message="This film does not exist")
+        films.exists(id)
+        users.require_admin_status()
         name = films.get_name(id)
         return render_template("delete.html", name=name, id=id)
     if request.method == "POST":
@@ -98,8 +101,7 @@ def delete(id):
 
 @app.route("/film/<int:id>")
 def film(id):
-    if not films.exists(id):
-        return render_template("error.html", message="This film does not exist")
+    films.exists(id)
     review_list = reviews.get_list(id)
     film_list = films.get_details(id)
     return render_template("film.html", id=id, reviews=review_list, details=film_list)
@@ -107,8 +109,7 @@ def film(id):
 @app.route("/film/<int:id>/new_review", methods=["get","post"])
 def new_review(id):
     if request.method == "GET":
-        if not films.exists(id):
-            return render_template("error.html", message="This film does not exist")
+        films.exists(id)
         name = films.get_name(id)
         return render_template("new_review.html", name=name, id=id)
     if request.method == "POST":
