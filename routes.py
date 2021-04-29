@@ -1,6 +1,6 @@
 from app import app
 from flask import redirect, render_template, request, url_for
-import countries, films, reviews, users
+import countries, films, languages, reviews, users
 
 @app.route("/")
 def index():
@@ -49,8 +49,9 @@ def country():
 @app.route("/new_film", methods=["get","post"])
 def new_film():
     if request.method == "GET":
-        list = countries.get_list()
-        return render_template("new_film.html", countries=list)
+        country_list = countries.get_list()
+        language_list = languages.get_list()
+        return render_template("new_film.html", countries=country_list, languages=language_list)
     if request.method == "POST":
         name = request.form["name"]
         if len(name) == 0:
@@ -62,7 +63,12 @@ def new_film():
         if year < 1888 or year > 2021:
             return render_template("error.html", message="Please enter a correct year")
         country_id = int(request.form["country_id"])
-        if films.send(name, description, year, country_id):
+        language_id = int(request.form["language_id"])
+        if language_id == 0:
+            new_language = request.form["new_language"]
+            languages.send(new_language)
+            language_id = languages.count()
+        if films.send(name, description, year, country_id, language_id):
             return redirect("/")
         else:
             return render_template("error.html", message="Sending failed")

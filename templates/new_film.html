@@ -4,29 +4,40 @@
 
 <h3>Add new film</h3>
 
-<p>Please enter details about the film.</p>
+<p>Please enter details about the film.
+<br><b>Tip: </b><a href="https://www.imdb.com/">IMDb</a> is a great source for this information!</p>
 
 <form action="/new_film" method="post">
     <p>Name: <br>
-    <input type="text" name="name"></p>
+    <input type="text" name="name" placeholder="Name"></p>
     <p>Description: <br>
-    <input type="text" name="description"></p>
+    <input type="text" name="description" placeholder="Description"></p>
     <p>Year: <br>
-    <input type="number" name="year" min="1888" max="2021"></p>
+    <input type="number" name="year" min="1888" max="2021" placeholder="Year"></p>
     <p>Country: <br>
         <select name="country_id">
             {% for country in countries %}
+            {% if country[1] == "United States"%}
+            <option value="{{ country[0] }}" selected>{{ country[1] }}</option>
+            {% else %}
             <option value="{{ country[0] }}">{{ country[1] }}</option>
+            {% endif %}
             {% endfor %}
         </select>
     <p>Language: <br>
-    <input type="text" name="language"></p>
+        <select name="language_id">
+            <option value="0" selected>New language</option>
+            {% for language in languages %}
+            <option value="{{ language[0] }}">{{ language[1] }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="new_language" placeholder="New language"></p>
     <p>Genre: <br>
-    <input type="text" name="genre"></p>
+    <input type="text" name="genre" placeholder="Genre"></p>
     <p>Director: <br>
-    <input type="text" name="director"></p>
+    <input type="text" name="director" placeholder="Director"></p>
     <p>Screenwriter: <br>
-    <input type="text" name="screenwriter"></p>
+    <input type="text" name="screenwriter" placeholder="Screenwriter"></p>
     <input type="submit" value="Submit">
 </form>
 
