@@ -26,10 +26,10 @@ AS,Brunei
 EU,Bulgaria
 AF,Burkina Faso
 AF,Burundi
-AF,Cape Verde
 AS,Cambodia
 AF,Cameroon
 NA,Canada
+AF,Cape Verde
 AF,Central African Republic
 AF,Chad
 SA,Chile
@@ -94,6 +94,7 @@ EU,Latvia
 AS,Lebanon
 AF,Lesotho
 AF,Liberia
+AF,Libya
 EU,Liechtenstein
 EU,Lithuania
 EU,Luxembourg
@@ -167,6 +168,7 @@ EU,Sweden
 EU,Switzerland
 AS,Syria
 AS,Tajikistan
+AF,Tanzania
 AS,Thailand
 AS,Timor-Leste
 AF,Togo
@@ -181,7 +183,6 @@ EU,Ukraine
 AS,United Arab Emirates
 EU,United Kingdom
 NA,United States
-AF,Tanzania
 SA,Uruguay
 AS,Uzbekistan
 OC,Vanuatu
