@@ -8,10 +8,17 @@ body {
 
 a:link {
   color: #8bb4f7;
+  text-decoration: none;
 }
 
 a:visited {
   color: #9fc0f5;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #8bb4f7;
+  text-decoration: underline;
 }
 
 a.admin:link {
@@ -30,10 +37,14 @@ a.admin:visited {
   color: green;
 }
 
-#timestamp {
-  color: darkslategray
-}
-
 .menu {
   width: 300px;
+}
+
+.secondary {
+  color: #437175;
+}
+
+a.secondary {
+  color: #437175;
 }

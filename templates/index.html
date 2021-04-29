@@ -18,7 +18,7 @@
 {% endif %}
 
 {% for film in films %}
-<p><b>Film:</b> <a href="film/{{ film[0] }}">{{ film[2] }} ({{ film[4] }})</a>
+<p><b>Film:</b> <a href="film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary">({{ film[4] }})</span>
 <br>
 <b>Description:</b> {{ film[3] }}
 {% if session.is_admin %}
