@@ -5,8 +5,9 @@
 <h3>Countries</h3>
 
 <p><b>Status: </b>
-{% if count == 192 %}<span class="success">List created, {{ count }} / 192 countries in database</span>
-{% else %}<span class="error">Ready to create list, {{ count }} / 192 countries in database</span>
+{% if count == 193 %}<span class="success">List created, {{ count }} / 193 countries in database</span>
+{% elif count == 0 %}<span class="error">Ready to create list, {{ count }} / 193 countries in database</span>
+{% else %}<span class="error">If you see this text, something went wrong...</span>
 {% endif %}</p>
 
 {% if count == 0 %}
