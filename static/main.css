@@ -33,3 +33,7 @@ a.admin:visited {
 #timestamp {
   color: darkslategray
 }
+
+.menu {
+  width: 300px;
+}
