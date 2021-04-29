@@ -4,8 +4,8 @@ import countries, films, genres, languages, reviews, users
 
 @app.route("/")
 def index():
-    list = films.get_list()
-    return render_template("index.html", films=list)
+    films_list = films.get_list()
+    return render_template("index.html", films=films_list)
 
 @app.route("/login", methods=["get","post"])
 def login():
@@ -35,6 +35,13 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html", message="Registration failed")
+
+@app.route("/statistics")
+def statistics():
+    user_count = users.count()
+    film_count = films.count()
+    review_count = reviews.count()
+    return render_template("statistics.html", users=user_count, films=film_count, reviews=review_count)
 
 @app.route("/countries", methods=["get","post"])
 def country():

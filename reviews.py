@@ -1,6 +1,11 @@
 from db import db
 import users
 
+def count():
+    sql = "SELECT COUNT(*) FROM reviews"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
 def get_list(film_id):
     sql = "SELECT u.username, r.content, r.grade, TO_CHAR(r.submitted, 'DD Month - HH24:MI') " \
           "FROM reviews AS r, users AS u " \
