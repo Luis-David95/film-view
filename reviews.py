@@ -13,6 +13,14 @@ def get_list(film_id):
     result = db.session.execute(sql, {"film_id":film_id})
     return result.fetchall()
 
+def get_average_grades():
+    sql = "SELECT f.name, ROUND(AVG(r.grade),1) " \
+          "FROM reviews AS r, films AS f " \
+          "WHERE f.id=r.film_id " \
+          "GROUP BY f.name"
+    result = db.session.execute(sql)
+    return result.fetchall()
+
 def send(user_id, film_id, content, grade):
     sql = "INSERT INTO reviews (user_id, film_id, content, grade, submitted) " \
           "VALUES (:user_id, :film_id, :content, :grade, NOW())"

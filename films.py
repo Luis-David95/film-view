@@ -21,9 +21,10 @@ def get_list():
     return result.fetchall()
 
 def get_details(id):
-    sql = "SELECT f.id, f.name, f.description, f.year, c.name, l.name, g.name " \
-          "FROM films AS f, countries AS c, languages AS l, genres AS g " \
-          "WHERE f.id=:id AND c.id=f.country_id AND l.id=f.language_id AND g.id=f.genre_id"
+    sql = "SELECT f.id, f.name, f.description, f.year, c.name, l.name, g.name, d.name, s.name " \
+          "FROM films AS f, countries AS c, languages AS l, genres AS g, directors AS d, screenwriters AS s " \
+          "WHERE f.id=:id AND c.id=f.country_id AND l.id=f.language_id " \
+          "AND g.id=f.genre_id AND d.id=f.director_id AND s.id=f.screenwriter_id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 
@@ -32,12 +33,13 @@ def get_name(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()[0]
 
-def send(name, description, year, country_id, language_id, genre_id):
-    sql = "INSERT INTO films (visible, name, description, year, country_id, language_id, genre_id) " \
-          "VALUES (:visible, :name, :description, :year, :country_id, :language_id, :genre_id)"
+def send(name, description, year, country_id, language_id, genre_id, director_id, screenwriter_id):
+    sql = "INSERT INTO films (visible, name, description, year, country_id, language_id, genre_id, director_id, screenwriter_id) " \
+          "VALUES (:visible, :name, :description, :year, :country_id, :language_id, :genre_id, :director_id, :screenwriter_id)"
     visible = 1
     db.session.execute(sql, {"visible":visible, "name":name, "description":description, 
-                             "year":year, "country_id":country_id, "language_id":language_id, "genre_id":genre_id})
+                             "year":year, "country_id":country_id, "language_id":language_id,
+                             "genre_id":genre_id, "director_id":director_id, "screenwriter_id":screenwriter_id})
     db.session.commit()
     return True
 

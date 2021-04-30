@@ -16,6 +16,7 @@
     <input type="number" name="year" min="1888" max="2021" placeholder="Year" size="7"></p>
     <p>Country: <br>
         <select name="country_id" class="menu">
+            <option value="-1" disabled selected>Select country</option>
             {% for country in countries %}
             {% if country[0] == 3 %}<optgroup label="Africa">{% endif %}
             {% if country[0] == 1 %}<optgroup label="Asia">{% endif %}
@@ -23,20 +24,17 @@
             {% if country[0] == 6 %}<optgroup label="North America">{% endif %}
             {% if country[0] == 7 %}<optgroup label="South America">{% endif %}
             {% if country[0] == 9 %}<optgroup label="Oceania">{% endif %}
-            {% if country[1] == "United States"%}
-            <option value="{{ country[0] }}" selected>{{ country[1] }}</option>
-            {% else %}
             <option value="{{ country[0] }}">{{ country[1] }}</option>
-            {% endif %}
             {% if country[0] == 193 or country[0] == 191 or country[0] == 184 or 
                   country[0] == 185 or country[0] == 189 or country[0] == 188 %}
             </optgroup>
             {% endif %}
             {% endfor %}
-        </select>
+        </select></p>
     <p>Language: <br>
         <select name="language_id" class="menu">
-            <option value="0" selected>New language</option>
+            <option value="-1" disabled selected>Select language</option>
+            <option value="0">New language</option>
             {% for language in languages %}
             <option value="{{ language[0] }}">{{ language[1] }}</option>
             {% endfor %}
@@ -54,7 +52,8 @@
     </script>
     <p>Genre: <br>
         <select name="genre_id" class="menu">
-            <option value="0" selected>New genre</option>
+            <option value="-1" disabled selected>Select genre</option>
+            <option value="0">New genre</option>
             {% for genre in genres %}
             <option value="{{ genre[0] }}">{{ genre[1] }}</option>
             {% endfor %}
@@ -71,9 +70,21 @@
         }
     </script>
     <p>Director: <br>
-    <input type="text" name="director" placeholder="Director"></p>
+        <select name="director_id" class="menu">
+            <option value="-1" disabled selected>Select director</option>
+            {% for director in directors %}
+            <option value="{{ director[0] }}">{{ director[1] }}</option>
+            {% endfor %}
+        </select>
+    Add new director <a href="/new_director">here</a></p>
     <p>Screenwriter: <br>
-    <input type="text" name="screenwriter" placeholder="Screenwriter"></p>
+        <select name="screenwriter_id" class="menu">
+            <option value="-1" disabled selected>Select screenwriter</option>
+            {% for screenwriter in screenwriters %}
+            <option value="{{ screenwriter[0] }}">{{ screenwriter[1] }}</option>
+            {% endfor %}
+        </select>
+    Add new screenwriter <a href="/new_screenwriter">here</a></p>
     <input type="submit" value="Submit">
 </form>
 

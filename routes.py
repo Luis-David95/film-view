@@ -1,6 +1,6 @@
 from app import app
 from flask import redirect, render_template, request, url_for
-import countries, films, genres, languages, reviews, users
+import countries, directors, films, genres, languages, reviews, screenwriters, users
 
 @app.route("/")
 def index():
@@ -62,7 +62,10 @@ def new_film():
         country_list = countries.get_list()
         language_list = languages.get_list()
         genre_list = genres.get_list()
-        return render_template("new_film.html", countries=country_list, languages=language_list, genres=genre_list)
+        director_list = directors.get_list()
+        screenwriter_list = screenwriters.get_list()
+        return render_template("new_film.html", countries=country_list, languages=language_list, genres=genre_list, 
+                                                directors=director_list, screenwriters=screenwriter_list)
     if request.method == "POST":
         name = request.form["name"]
         if len(name) == 0:
@@ -88,8 +91,56 @@ def new_film():
             new_genre = request.form["new_genre"]
             genres.send(new_genre)
             genre_id = genres.count()
-        if films.send(name, description, year, country_id, language_id, genre_id):
+        director_id = int(request.form["director_id"])
+        screenwriter_id = int(request.form["screenwriter_id"])
+        if films.send(name, description, year, country_id, language_id, genre_id, director_id, screenwriter_id):
             return redirect("/")
+        else:
+            return render_template("error.html", message="Sending failed")
+
+@app.route("/new_director", methods=["get","post"])
+def new_director():
+    if request.method == "GET":
+        users.require_status(1)
+        country_list = countries.get_list()
+        return render_template("new_director.html", countries=country_list)
+    if request.method == "POST":
+        name = request.form["name"]
+        if len(name) == 0:
+            return render_template("error.html", message="Name cannot be empty")
+        if len(name) > 50:
+            return render_template("error.html", message="Name is too long")
+        description = request.form["description"]
+        if len(description) == 0:
+            return render_template("error.html", message="Description cannot be empty")
+        if len(description) > 500:
+            return render_template("error.html", message="Description is too long")
+        country_id = int(request.form["country_id"])
+        if directors.send(name, description, country_id):
+            return redirect("/new_film")
+        else:
+            return render_template("error.html", message="Sending failed")
+
+@app.route("/new_screenwriter", methods=["get","post"])
+def new_screenwriter():
+    if request.method == "GET":
+        users.require_status(1)
+        country_list = countries.get_list()
+        return render_template("new_screenwriter.html", countries=country_list)
+    if request.method == "POST":
+        name = request.form["name"]
+        if len(name) == 0:
+            return render_template("error.html", message="Name cannot be empty")
+        if len(name) > 50:
+            return render_template("error.html", message="Name is too long")
+        description = request.form["description"]
+        if len(description) == 0:
+            return render_template("error.html", message="Description cannot be empty")
+        if len(description) > 500:
+            return render_template("error.html", message="Description is too long")
+        country_id = int(request.form["country_id"])
+        if screenwriters.send(name, description, country_id):
+            return redirect("/new_film")
         else:
             return render_template("error.html", message="Sending failed")
 
