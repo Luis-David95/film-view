@@ -4,30 +4,30 @@
 
 {% for detail in details %}
 
-{% if session.is_admin %}
-<p><b>Admin options: </b><a class="admin" href="/">[Edit]</a> <a class="admin" href="/delete/{{ detail[0] }}">[Delete]</a></p>
-{% endif %}
-
 <h2>{{ detail[1] }}</h2>
 <p>
 {{ detail[2] }}
 </p>
 <p>
-<b>Year: </b> {{ detail[3] }}
+<span class="detail">Year </span>- {{ detail[3] }}
 <br>
-<b>Country:</b> {{ detail[4] }}
+<span class="detail">Country </span>- {{ detail[4] }}
 <br>
-<b>Language:</b> {{ detail[5] }}
+<span class="detail">Language </span>- {{ detail[5] }}
 <br>
-<b>Genre:</b> {{ detail[6] }}
+<span class="detail">Genre </span>- {{ detail[6] }}
 <br>
-<b>Director:</b> {{ detail[7] }}
+<span class="detail">Director </span>- {{ detail[7] }}
 <br>
-<b>Screenwriter:</b> {{ detail[8] }}
+<span class="detail">Screenwriter </span>- {{ detail[8] }}
 </p>
+
+{% if session.is_admin %}
+<p><b>Admin options: </b><a class="admin" href="/">[Edit]</a> <a class="admin" href="/delete/{{ detail[0] }}">[Delete]</a></p>
+{% endif %}
+
 {% endfor %}
 
-<hr>
 <h3>Reviews</h3>
 
 {% if session.user_id %}
@@ -35,13 +35,20 @@
 {% endif %}
 
 {% for review in reviews %}
-<p>
-<b>Submitted by</b> {{ review[0] }} <span class="secondary">({{ review[3] }})</span>
-<br>
-<b>Grade:</b> {{ review[2] }}
-<br>
-<b>Review:</b> {{ review[1] }}
-</p>
+<div class="container">
+<p>Submitted by <b>{{ review[0] }}</b> 
+<br><span class="secondary">{{ review[3] }}</span></p>
+{% if review[2] < 4 %}
+<p class="grade" id="bad">{{ review[2] }}</p>
+{% elif review[2] < 7 %}
+<p class="grade" id="neutral">{{ review[2] }}</p>
+{% elif review[2] < 10 %}
+<p class="grade" id="good">{{ review[2] }}</p>
+{% else %}
+<p class="grade" id="perfect">{{ review[2] }}</p>
+{% endif %}
+<p>{{ review[1] }}</p>
+</div>
 {% endfor %}
 
 {% endblock %}

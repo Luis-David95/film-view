@@ -18,14 +18,13 @@
 {% endif %}
 
 {% for film in films %}
-<p><b>Film:</b> <a href="film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary">({{ film[4] }})</span>
-<br>
-<b>Description:</b> {{ film[3] }}
+<div class="container"><a href="film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary"></span>({{ film[4] }})</span>
 {% if session.is_admin %}
-<br>
-<b>Options: </b><a class="admin" href="/">[Edit]</a> <a class="admin" href="/delete/{{ film[0] }}">[Delete]</a>
+<a class="admin" href="/">[Edit]</a> <a class="admin" href="/delete/{{ film[0] }}">[Delete]</a>
 {% endif %}
-</p>
+<br>
+{{ film[3] }}
+</div>
 
 {% endfor %}
 

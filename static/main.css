@@ -48,3 +48,34 @@ a.admin:visited {
 a.secondary {
   color: #437175;
 }
+
+.container {
+  border: 2px solid #0b273d;
+  margin-bottom: 10px;
+  padding: 15px;
+}
+
+.detail {
+  color: #9fc0f5;
+  font-weight: bold;
+}
+
+.grade {
+  font-size: 150%;
+}
+
+#perfect {
+  color: darkgreen;
+}
+
+#good {
+  color: green;
+}
+
+#neutral {
+  color: orange;
+}
+
+#bad {
+  color: red;
+}
