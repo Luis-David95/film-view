@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Restore film{% endblock %}
+{% block content %}
+
+<h3>Restore film</h3>
+
+<p>Are you sure you want to restore film <b>{{ name }}</b>?</p>
+
+<form action="/restore/{{ id }}" method="post">
+    <input type="submit" value="Yes" />
+</form>
+
+{% endblock %}

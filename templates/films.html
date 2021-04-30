@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Manage films{% endblock %}
+{% block content %}
+
+<h3>Manage films</h3>
+
+<p>Choose a film to delete or restore.</p>
+
+{% for film in films %}
+<div class="container"><a href="/film/{{ film[0] }}">{{ film[2] }}</a>
+{% if film[1] == 1 %}
+<a class="delete" href="/delete/{{ film[0] }}">[Delete]</a>
+{% else %}
+<a class="restore" href="/restore/{{ film[0] }}">[Restore]</a>
+{% endif %}
+</div>
+{% endfor %}
+
+{% endblock %}

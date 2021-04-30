@@ -21,12 +21,20 @@ a:hover {
   text-decoration: underline;
 }
 
-a.admin:link {
+a.delete:link {
   color: #f73441;
 }
 
-a.admin:visited {
+a.delete:visited {
   color: #f73441;
+}
+
+a.restore:link {
+  color: #4bf734;
+}
+
+a.restore:visited {
+  color: #4bf734;
 }
 
 .error {

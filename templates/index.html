@@ -5,8 +5,7 @@
 {% if session.is_admin %}
 <h2>Admin panel</h2>
 <p>> <a href="/new_film">Add new film</a></p>
-<p>> <a href="/delete">Delete films</a></p>
-<p>> <a href="/restore">Restore deleted films</a></p>
+<p>> <a href="/films">Manage films</a></p>
 <p>> <a href="/countries">Create country list</a></p>
 {% endif %}
 
@@ -18,10 +17,7 @@
 {% endif %}
 
 {% for film in films %}
-<div class="container"><a href="film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary"></span>({{ film[4] }})</span>
-{% if session.is_admin %}
-<a class="admin" href="/">[Edit]</a> <a class="admin" href="/delete/{{ film[0] }}">[Delete]</a>
-{% endif %}
+<div class="container"><a href="/film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary"></span>({{ film[4] }})</span>
 <br>
 {{ film[3] }}
 </div>

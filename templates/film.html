@@ -18,7 +18,7 @@
 </p>
 
 {% if session.is_admin %}
-<p><b>Admin options: </b><a class="admin" href="/">[Edit]</a> <a class="admin" href="/delete/{{ detail[0] }}">[Delete]</a></p>
+<p><b>Admin options: <a class="delete" href="/delete/{{ detail[0] }}">[Delete]</a></p>
 {% endif %}
 
 {% endfor %}

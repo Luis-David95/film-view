@@ -4,7 +4,7 @@ import countries, directors, films, genres, languages, reviews, screenwriters, u
 
 @app.route("/")
 def index():
-    films_list = films.get_list()
+    films_list = films.get_list(1)
     return render_template("index.html", films=films_list)
 
 @app.route("/login", methods=["get","post"])
@@ -144,18 +144,37 @@ def new_screenwriter():
         else:
             return render_template("error.html", message="Sending failed")
 
+@app.route("/films/")
+def manage():
+    users.require_status(1)
+    films_list = films.get_list(0)
+    return render_template("films.html", films=films_list)
+
 @app.route("/delete/<int:id>", methods=["get","post"])
 def delete(id):
     if request.method == "GET":
         films.exists(id)
         users.require_status(1)
         name = films.get_name(id)
-        return render_template("delete_confirm.html", name=name, id=id)
+        return render_template("delete.html", name=name, id=id)
     if request.method == "POST":
         if films.delete(id):
             return redirect("/")
         else:
             return render_template("error.html", message="Deleting film failed")
+
+@app.route("/restore/<int:id>", methods=["get","post"])
+def restore(id):
+    if request.method == "GET":
+        if films.visible(id) == 0:
+            users.require_status(1)
+            name = films.get_name(id)
+            return render_template("restore.html", name=name, id=id)
+    if request.method == "POST":
+        if films.restore(id):
+            return redirect("/")
+        else:
+            return render_template("error.html", message="Restoring film failed")
 
 @app.route("/film/<int:id>")
 def film(id):
