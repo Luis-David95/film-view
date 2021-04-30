@@ -150,7 +150,7 @@ def delete(id):
         films.exists(id)
         users.require_status(1)
         name = films.get_name(id)
-        return render_template("delete.html", name=name, id=id)
+        return render_template("delete_confirm.html", name=name, id=id)
     if request.method == "POST":
         if films.delete(id):
             return redirect("/")
