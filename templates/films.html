@@ -7,11 +7,14 @@
 <p>Choose a film to delete or restore.</p>
 
 {% for film in films %}
-<div class="container"><a href="/film/{{ film[0] }}">{{ film[2] }}</a>
+<div class="container">
+Film: <a href="/film/{{ film[0] }}">{{ film[2] }}</a>
 {% if film[1] == 1 %}
-<a class="delete" href="/delete/{{ film[0] }}">[Delete]</a>
+<br>Status: Visible 
+<br>Options: <a class="delete" href="/delete/{{ film[0] }}">[Delete]</a>
 {% else %}
-<a class="restore" href="/restore/{{ film[0] }}">[Restore]</a>
+<br>Status: Deleted 
+<br>Options: <a class="restore" href="/restore/{{ film[0] }}">[Restore]</a>
 {% endif %}
 </div>
 {% endfor %}
