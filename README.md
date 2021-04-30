@@ -36,9 +36,10 @@ Lista päivitetty perjantaina 30.4.
 - Käyttäjä voi hakea elokuvia elokuvan nimen, kuvauksen tai lajityypin perusteella
 - Elokuvalistaus on mahdollista ladata aakkosjärjestyksessä tai arvosanan perusteella parhaimmasta huonoimpaan
 - Ylläpitäjä voi lisätä uuden elokuvan ✓
-- Ylläpitäjä voi poistaa elokuvan näkyvistä ✓
-- Ylläpitäjä voi palauttaa poistetun elokuvan näkyviin
-- Ylläpitäjä voi muokata elokuvan tietoja
+- Ylläpitäjä voi hallinnoida elokuvia:
+  - Ylläpitäjä voi poistaa elokuvan näkyvistä ✓
+  - Ylläpitäjä voi palauttaa poistetun elokuvan näkyviin ✓
+  - Ylläpitäjä voi muokata elokuvan tietoja
 - Ylläpitäjä voi generoida listan maista ja maanosista ✓
 - Ylläpitäjä voi poistaa käyttäjän antaman arvion
 
