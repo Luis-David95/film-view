@@ -14,7 +14,7 @@ Sovelluksen testaamista ja elokuva-arvosteluiden lisäämistä varten kannattaa 
 ## Ominaisuudet
 
 Toteutetut ja toimivat ominaisuudet on merkitty "✓"-tunnuksella.  
-Lista päivitetty perjantaina 30.4.
+Lista päivitetty lauantaina 1.5.
 
 - Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen ✓
 - Käyttäjä on peruskäyttäjä tai ylläpitäjä ✓
