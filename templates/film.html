@@ -18,12 +18,16 @@
 </p>
 
 {% if session.is_admin %}
-<p><b>Admin options: <a class="delete" href="/delete/{{ detail[0] }}">[Delete]</a></p>
+<p>Admin options: <a class="delete" href="/delete/{{ detail[0] }}">[Delete]</a></p>
 {% endif %}
 
 {% endfor %}
 
 <h3>Reviews</h3>
+
+{% for grade_detail in grade_details %}
+<p>Average grade: <b>[ {{ grade_detail[0] }} / 10.0 ]</b> based on {{ grade_detail[1] }} reviews</p>
+{% endfor %}
 
 {% if session.user_id %}
 <p><a href="/film/{{ id }}/new_review">Add new review</a></p>

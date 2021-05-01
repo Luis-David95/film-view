@@ -21,6 +21,13 @@ def get_average_grades():
     result = db.session.execute(sql)
     return result.fetchall()
 
+def get_grade_details(film_id):
+    sql = "SELECT ROUND(AVG(r.grade),1), COUNT(DISTINCT r.id) " \
+          "FROM reviews AS r, films AS f " \
+          "WHERE r.film_id=:film_id"
+    result = db.session.execute(sql, {"film_id":film_id})
+    return result.fetchall()
+
 def send(user_id, film_id, content, grade):
     sql = "INSERT INTO reviews (user_id, film_id, content, grade, submitted) " \
           "VALUES (:user_id, :film_id, :content, :grade, NOW())"

@@ -181,7 +181,8 @@ def film(id):
     films.exists(id)
     review_list = reviews.get_list(id)
     film_list = films.get_details(id)
-    return render_template("film.html", id=id, reviews=review_list, details=film_list)
+    grade_details = reviews.get_grade_details(id)
+    return render_template("film.html", id=id, reviews=review_list, details=film_list, grade_details=grade_details)
 
 @app.route("/film/<int:id>/new_review", methods=["get","post"])
 def new_review(id):
