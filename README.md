@@ -31,7 +31,7 @@ Lista päivitetty perjantaina 30.4.
   - Käsikirjoittaja (screenwriter) ✓
 - Käyttäjä voi antaa arvion elokuvasta ja lukea muiden antamia arvioita ✓
   - Numeroarvosana esim. 1-10 ✓
-    - Numeroarvosanoista lasketaan keskiarvo, joka on elokuvan "arvosana" sivustolla
+    - Numeroarvosanoista lasketaan keskiarvo, joka on elokuvan "arvosana" sivustolla ✓
   - Sanallinen arvostelu ✓
 - Käyttäjä voi hakea elokuvia elokuvan nimen, kuvauksen tai lajityypin perusteella
 - Elokuvalistaus on mahdollista ladata aakkosjärjestyksessä tai arvosanan perusteella parhaimmasta huonoimpaan
