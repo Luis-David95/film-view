@@ -17,7 +17,8 @@ def get_average_grades():
     sql = "SELECT f.name, ROUND(AVG(r.grade),1) " \
           "FROM reviews AS r, films AS f " \
           "WHERE f.id=r.film_id " \
-          "GROUP BY f.name"
+          "GROUP BY f.name " \
+          "ORDER BY f.name"
     result = db.session.execute(sql)
     return result.fetchall()
 

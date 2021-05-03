@@ -4,8 +4,9 @@ import countries, directors, films, genres, languages, reviews, screenwriters, u
 
 @app.route("/")
 def index():
-    films_list = films.get_list(1)
-    return render_template("index.html", films=films_list)
+    film_list = films.get_list(1)
+    average_grades = reviews.get_average_grades()
+    return render_template("index.html", data=zip(film_list, average_grades))
 
 @app.route("/login", methods=["get","post"])
 def login():

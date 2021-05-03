@@ -16,8 +16,8 @@
 <p><span class="error">(No films yet!)</span></p>
 {% endif %}
 
-{% for film in films %}
-<div class="container"><a href="/film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary">({{ film[4] }})</span>
+{% for film, average_grade in data %}
+<div class="container">[ {{ average_grade[1] }} ] <a href="/film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary">({{ film[4] }})</span>
 <br>
 {{ film[3] }}
 </div>
