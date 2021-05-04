@@ -6,6 +6,7 @@ CREATE TABLE continents (
 CREATE TABLE countries (
     id SERIAL PRIMARY KEY,
     name TEXT,
+    code TEXT,
     continent_id INTEGER REFERENCES continents
 );
 
