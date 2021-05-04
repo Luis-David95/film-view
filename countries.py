@@ -22,7 +22,8 @@ def create_list():
     with open('data/countries.csv') as file:
         reader = csv.reader(file, delimiter=',')
         for row in reader:
-            name = row[1]
+            name = row[2]
+            code = row[1]
             continent_id = 0
             if row[0] == "AF":
                 continent_id = 1
@@ -36,8 +37,8 @@ def create_list():
                 continent_id = 5
             elif row[0] == "OC":
                 continent_id = 6
-            sql = "INSERT INTO countries (name, continent_id) VALUES (:name, :continent_id)"
-            db.session.execute(sql, {"name":name, "continent_id":continent_id})
+            sql = "INSERT INTO countries (name, code, continent_id) VALUES (:name, :code, :continent_id)"
+            db.session.execute(sql, {"name":name, "code":code, "continent_id":continent_id})
         db.session.commit()
 
     return True

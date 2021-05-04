@@ -18,14 +18,14 @@ def visible(id):
     return result.fetchone()[0]
 
 def get_visible():
-    sql = "(SELECT f.id s_id, f.visible, f.name AS s_name, f.description, f.year, ROUND(AVG(r.grade),1) AS s_avg " \
-          "FROM reviews AS r, films AS f " \
-          "WHERE f.id=r.film_id AND visible=1 " \
-          "GROUP BY f.id) " \
+    sql = "(SELECT f.id AS s_id, f.visible, f.name AS s_name, f.description, f.year, c.code, ROUND(AVG(r.grade),1) AS s_avg " \
+          "FROM films AS f, countries AS c, reviews AS r " \
+          "WHERE f.id=r.film_id AND c.id=f.country_id AND visible=1 " \
+          "GROUP BY f.id, c.code) " \
           "UNION " \
-          "(SELECT f.id, f. visible, f.name, f.description, f.year, 0.0 " \
-          "FROM films AS f " \
-          "WHERE NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id = r.film_id)) " \
+          "(SELECT f.id, f. visible, f.name, f.description, f.year, c.code, 0.0 " \
+          "FROM films AS f, countries AS c " \
+          "WHERE c.id=f.country_id AND NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id = r.film_id)) " \
           "ORDER BY s_avg DESC"
     result = db.session.execute(sql)
     return result.fetchall()
