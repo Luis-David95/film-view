@@ -49,3 +49,8 @@ Lista päivitetty lauantaina 1.5.
 - Syötteiden validoinnin lisääminen ja tarkentaminen
 - CSRF-haavoittuvuuden korjaaminen
 - Ulkoasun ja käyttöliittymän parantelua
+
+## Data
+- Valtioiden tiedot: [un.org](https://www.un.org/en/about-us/member-states)
+- Valtioiden liput: [countryflags.io](https://www.countryflags.io/)
+- Favicon: [favicon.io](https://favicon.io/)
