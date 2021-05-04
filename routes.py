@@ -32,8 +32,7 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        country_id = request.form["country_id"]
-        if users.register(username, password, country_id):
+        if users.register(username, password):
             return redirect("/")
         else:
             return render_template("error.html", message="Registration failed")
