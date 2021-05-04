@@ -92,3 +92,18 @@ hr.divider {
 #bad {
   color: red;
 }
+
+#not-graded {
+  color: gray;
+}
+
+.average-grade {
+  display: inline-block;
+  padding: 10px;
+}
+
+.film-details {
+  display: inline-block;
+  padding: 10px;
+  width: 90%;
+}

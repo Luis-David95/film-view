@@ -17,23 +17,25 @@ def visible(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()[0]
 
-def get_list(visible):
-    if visible == 1:
-        sql = "SELECT f.id, f.visible, f.name, f.description, f.year, c.name " \
-          "FROM films AS f, countries AS c " \
-          "WHERE c.id=f.country_id AND visible=1 " \
+def get_visible():
+    sql = "(SELECT f.id s_id, f.visible, f.name AS s_name, f.description, f.year, ROUND(AVG(r.grade),1) AS s_avg " \
+          "FROM reviews AS r, films AS f " \
+          "WHERE f.id=r.film_id AND visible=1 " \
+          "GROUP BY f.id) " \
+          "UNION " \
+          "(SELECT f.id, f. visible, f.name, f.description, f.year, 0.0 " \
+          "FROM films AS f " \
+          "WHERE NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id = r.film_id)) " \
+          "ORDER BY s_avg DESC"
+    result = db.session.execute(sql)
+    return result.fetchall()
+    
+def get_all():
+    sql = "SELECT f.id, f.visible, f.name, f.description, f.year " \
+          "FROM films AS f " \
           "ORDER BY f.name"
-        result = db.session.execute(sql)
-        return result.fetchall()
-    elif visible == 0:
-        sql = "SELECT f.id, f.visible, f.name, f.description, f.year, c.name " \
-          "FROM films AS f, countries AS c " \
-          "WHERE c.id=f.country_id " \
-          "ORDER BY f.name"
-        result = db.session.execute(sql)
-        return result.fetchall()
-    else:
-        abort(500)
+    result = db.session.execute(sql)
+    return result.fetchall()
 
 def get_details(id):
     sql = "SELECT f.id, f.name, f.description, f.year, c.name, l.name, g.name, d.name, s.name " \

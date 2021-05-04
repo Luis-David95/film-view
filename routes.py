@@ -4,9 +4,8 @@ import countries, directors, films, genres, languages, reviews, screenwriters, u
 
 @app.route("/")
 def index():
-    film_list = films.get_list(1)
-    average_grades = reviews.get_average_grades()
-    return render_template("index.html", data=zip(film_list, average_grades))
+    film_list = films.get_visible()
+    return render_template("index.html", films=film_list)
 
 @app.route("/login", methods=["get","post"])
 def login():
@@ -148,7 +147,7 @@ def new_screenwriter():
 @app.route("/films/")
 def manage():
     users.require_status(1)
-    films_list = films.get_list(0)
+    films_list = films.get_all()
     return render_template("films.html", films=films_list)
 
 @app.route("/delete/<int:id>", methods=["get","post"])

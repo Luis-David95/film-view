@@ -25,8 +25,12 @@
 
 <h3>Reviews</h3>
 
-{% for grade_detail in grade_details %}
-<p>Average grade: <b>[ {{ grade_detail[0] }} / 10.0 ]</b> based on {{ grade_detail[1] }} reviews</p>
+{% for detail in grade_details %}
+{% if not detail[0] %}
+<p>No one has graded this film yet</p>
+{% else %}
+<p>Average grade: <b>[ {{ detail[0] }} / 10.0 ]</b> based on {{ detail[1] }} reviews</p>
+{% endif %}
 {% endfor %}
 
 {% if session.user_id %}

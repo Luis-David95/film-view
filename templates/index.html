@@ -12,16 +12,28 @@
 <h2>Films</h2>
 <p>Get started by choosing a film</p>
 
-{% if not films %}
-<p><span class="error">(No films yet!)</span></p>
-{% endif %}
+{% for film in films %}
 
-{% for film, average_grade in data %}
-<div class="container">[ {{ average_grade[1] }} ] <a href="/film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary">({{ film[4] }})</span>
+<div class="container">
+<div class="average-grade">
+{% if film[5] == 0 %}
+<span class="grade" id="not-graded">{{ film[5] }}</span>
+{% elif film[5] < 4 %}
+<span class="grade" id="bad">{{ film[5] }}</span>
+{% elif film[5] < 7 %}
+<span class="grade" id="neutral">{{ film[5] }}</span>
+{% elif film[5] < 10 %}
+<span class="grade" id="good">{{ film[5] }}</span>
+{% elif film[5] == 10 %}
+<span class="grade" id="perfect">{{ film[5] }}</span>
+{% endif %}
+</div>
+<div class="film-details">
+<a href="/film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary">({{ film[4] }})</span>
 <br>
 {{ film[3] }}
 </div>
-
+</div>
 {% endfor %}
 
 {% endblock %}
