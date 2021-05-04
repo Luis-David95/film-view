@@ -7,9 +7,9 @@ def count():
     return result.fetchone()[0]
 
 def get_list(film_id):
-    sql = "SELECT u.username, r.content, r.grade, TO_CHAR(r.submitted, 'DD Month YYYY - HH24:MI') " \
-          "FROM reviews AS r, users AS u " \
-          "WHERE r.film_id=:film_id AND u.id=r.user_id"
+    sql = "SELECT u.username, r.content, r.grade, TO_CHAR(r.submitted, 'DD Month YYYY - HH24:MI'), c.name, c.code " \
+          "FROM reviews AS r, users AS u, countries AS c " \
+          "WHERE r.film_id=:film_id AND u.id=r.user_id AND c.id=u.country_id"
     result = db.session.execute(sql, {"film_id":film_id})
     return result.fetchall()
 

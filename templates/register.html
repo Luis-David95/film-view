@@ -9,6 +9,23 @@
 <form action="/register" method="post">
 <p>Username: <input type="text" name="username" placeholder="Username"></p>
 <p>Password: <input type="password" name="password" placeholder="Password"></p>
+<p>Country: 
+    <select name="country_id" class="menu">
+        <option value="-1" disabled selected>Select country</option>
+        {% for country in countries %}
+        {% if country[0] == 3 %}<optgroup label="Africa">{% endif %}
+        {% if country[0] == 1 %}<optgroup label="Asia">{% endif %}
+        {% if country[0] == 2 %}<optgroup label="Europe">{% endif %}
+        {% if country[0] == 6 %}<optgroup label="North America">{% endif %}
+        {% if country[0] == 7 %}<optgroup label="South America">{% endif %}
+        {% if country[0] == 9 %}<optgroup label="Oceania">{% endif %}
+        <option value="{{ country[0] }}">{{ country[1] }}</option>
+        {% if country[0] == 193 or country[0] == 191 or country[0] == 184 or 
+              country[0] == 185 or country[0] == 189 or country[0] == 188 %}
+        </optgroup>
+        {% endif %}
+        {% endfor %}
+    </select></p>
 <input type="submit" value="Register">
 </form>
 

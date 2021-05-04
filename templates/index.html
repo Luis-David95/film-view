@@ -16,21 +16,21 @@
 
 <div class="container">
 <div class="average-grade">
-{% if film[6] == 0 %}
-<span class="grade" id="not-graded">{{ film[6] }}</span>
-{% elif film[6] < 4 %}
-<span class="grade" id="bad">{{ film[6] }}</span>
-{% elif film[6] < 7 %}
-<span class="grade" id="neutral">{{ film[6] }}</span>
-{% elif film[6] < 10 %}
-<span class="grade" id="good">{{ film[6] }}</span>
-{% elif film[6] == 10 %}
-<span class="grade" id="perfect">{{ film[6] }}</span>
+{% if film[7] == 0 %}
+<span class="grade" id="not-graded">{{ film[7] }}</span>
+{% elif film[7] < 4 %}
+<span class="grade" id="bad">{{ film[7] }}</span>
+{% elif film[7] < 7 %}
+<span class="grade" id="neutral">{{ film[7] }}</span>
+{% elif film[7] < 10 %}
+<span class="grade" id="good">{{ film[7] }}</span>
+{% elif film[7] == 10 %}
+<span class="grade" id="perfect">{{ film[7] }}</span>
 {% endif %}
 </div>
 <div class="film-details">
 <a href="/film/{{ film[0] }}">{{ film[2] }}</a> <span class="secondary">({{ film[4] }})</span>
-<img src="https://www.countryflags.io/{{ film[5] }}/flat/16.png">
+<img src="https://www.countryflags.io/{{ film[6] }}/flat/16.png" title="{{ film[5] }}" >
 <br>
 {{ film[3] }}
 </div>

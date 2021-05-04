@@ -39,7 +39,8 @@
 
 {% for review in reviews %}
 <div class="container">
-<p>Submitted by <b>{{ review[0] }}</b> 
+<p>Submitted by <b>{{ review[0] }}</b>
+<img src="https://www.countryflags.io/{{ review[5] }}/flat/16.png" title="{{ review[4] }}" >
 <br><span class="secondary">{{ review[3] }}</span></p>
 {% if review[2] < 4 %}
 <p class="grade" id="bad">{{ review[2] }}</p>
