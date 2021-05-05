@@ -25,7 +25,7 @@ def get_visible():
           "UNION " \
           "(SELECT f.id, f. visible, f.name, f.description, f.year, c.name, c.code, 0.0 " \
           "FROM films AS f, countries AS c " \
-          "WHERE c.id=f.country_id AND NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id = r.film_id)) " \
+          "WHERE c.id=f.country_id AND visible=1 AND NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id = r.film_id)) " \
           "ORDER BY s_avg DESC"
     result = db.session.execute(sql)
     return result.fetchall()
