@@ -64,7 +64,7 @@ hr.divider {
 
 .container {
   border: 2px solid #0b273d;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding: 15px;
 }
 
@@ -106,4 +106,12 @@ hr.divider {
   display: inline-block;
   padding: 10px;
   width: 90%;
+}
+
+.footer {
+  color: #103f64;
+}
+
+a.footer {
+  color: #103f64;
 }
