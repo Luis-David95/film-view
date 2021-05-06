@@ -8,6 +8,7 @@
 <p>Tip: <a href="https://www.imdb.com/">IMDb</a> is a great source for this information!</p>
 
 <form action="/new_film" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <p>Name: <br>
     <input type="text" name="name" placeholder="Name" maxlength="50"></p>
     <p>Description: <br>

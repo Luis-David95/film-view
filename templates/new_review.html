@@ -8,17 +8,18 @@
 <br>Please choose a grade and write a short review below.</p>
 
 <form action="/film/{{ id }}/new_review" method="post">
-<p>Grade: <br>
-    <select name="grade">
-        {% for n in range(1,11) %}
-        <option value="{{ n }}" selected>{{ n }}</option>
-        {% endfor %}
-    </select>
-</p>
-<p>Review: <br>
-<textarea name="content" rows="15" cols="60"></textarea>
-</p>
-<input type="submit" value="Submit">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <p>Grade: <br>
+        <select name="grade">
+            {% for n in range(1,11) %}
+            <option value="{{ n }}" selected>{{ n }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p>Review: <br>
+    <textarea name="content" rows="15" cols="60"></textarea>
+    </p>
+    <input type="submit" value="Submit">
 </form>
 
 {% endblock %}

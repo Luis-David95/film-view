@@ -1,5 +1,5 @@
 from app import app
-from flask import redirect, render_template, request, url_for
+from flask import redirect, render_template, request, session, url_for
 import countries, directors, films, genres, languages, reviews, screenwriters, users
 
 @app.route("/")
@@ -52,6 +52,8 @@ def country():
         count = countries.count()
         return render_template("countries.html", count=count)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         if countries.create_list():
             return redirect("/countries")
         else:
@@ -69,6 +71,8 @@ def new_film():
         return render_template("new_film.html", countries=country_list, languages=language_list, genres=genre_list, 
                                                 directors=director_list, screenwriters=screenwriter_list)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         name = request.form["name"]
         if len(name) == 0:
             return render_template("error.html", message="Name cannot be empty")
@@ -107,6 +111,8 @@ def new_director():
         country_list = countries.get_list()
         return render_template("new_director.html", countries=country_list)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         name = request.form["name"]
         if len(name) == 0:
             return render_template("error.html", message="Name cannot be empty")
@@ -130,6 +136,8 @@ def new_screenwriter():
         country_list = countries.get_list()
         return render_template("new_screenwriter.html", countries=country_list)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         name = request.form["name"]
         if len(name) == 0:
             return render_template("error.html", message="Name cannot be empty")
@@ -160,6 +168,8 @@ def delete(id):
         name = films.get_name(id)
         return render_template("delete.html", name=name, id=id)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         if films.delete(id):
             return redirect("/")
         else:
@@ -173,6 +183,8 @@ def restore(id):
             name = films.get_name(id)
             return render_template("restore.html", name=name, id=id)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         if films.restore(id):
             return redirect("/")
         else:
@@ -196,6 +208,8 @@ def new_review(id):
         name = films.get_name(id)
         return render_template("new_review.html", name=name, id=id)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         user_id = users.get_user_id()
         film_id = id
         content = request.form["content"]

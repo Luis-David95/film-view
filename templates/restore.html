@@ -7,6 +7,7 @@
 <p>Are you sure you want to restore film <b>{{ name }}</b>?</p>
 
 <form action="/restore/{{ id }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="submit" value="Yes" />
 </form>
 

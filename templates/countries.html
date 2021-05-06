@@ -15,6 +15,7 @@
 <br>Please note that you can only press the button once.</p>
 
 <form action="/countries" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="submit" name="create" value="Create!" />
 </form>
 {% endif %}
