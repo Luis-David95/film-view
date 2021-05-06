@@ -17,7 +17,7 @@ def login(username, password):
             if is_admin(username):
                 session["is_admin"] = True
             else:
-                session["is_admin"] = False         
+                session["is_admin"] = False
             return True
         else:
             return False

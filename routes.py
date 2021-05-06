@@ -1,5 +1,5 @@
 from app import app
-from flask import redirect, render_template, request, session, url_for
+from flask import abort, redirect, render_template, request, session, url_for
 import countries, directors, films, genres, languages, reviews, screenwriters, users
 
 @app.route("/")
@@ -68,7 +68,7 @@ def new_film():
         genre_list = genres.get_list()
         director_list = directors.get_list()
         screenwriter_list = screenwriters.get_list()
-        return render_template("new_film.html", countries=country_list, languages=language_list, genres=genre_list, 
+        return render_template("new_film.html", countries=country_list, languages=language_list, genres=genre_list,
                                                 directors=director_list, screenwriters=screenwriter_list)
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
@@ -197,7 +197,7 @@ def film(id):
     review_list = reviews.get_list(id)
     film_list = films.get_details(id)
     grade_details = reviews.get_grade_details(id)
-    return render_template("film.html", id=id, name=name, reviews=review_list, 
+    return render_template("film.html", id=id, name=name, reviews=review_list,
                                         details=film_list, grade_details=grade_details)
 
 @app.route("/film/<int:id>/new_review", methods=["get","post"])

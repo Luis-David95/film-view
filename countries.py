@@ -42,7 +42,7 @@ def create_list():
         db.session.commit()
 
     return True
-        
+
 def get_list():
     sql = "SELECT id, name FROM countries ORDER BY continent_id, name"
     result = db.session.execute(sql)

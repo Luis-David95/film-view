@@ -29,7 +29,7 @@ def get_visible():
           "ORDER BY s_avg DESC"
     result = db.session.execute(sql)
     return result.fetchall()
-    
+
 def get_all():
     sql = "SELECT f.id, f.visible, f.name, f.description, f.year " \
           "FROM films AS f " \
@@ -54,7 +54,7 @@ def send(name, description, year, country_id, language_id, genre_id, director_id
     sql = "INSERT INTO films (visible, name, description, year, country_id, language_id, genre_id, director_id, screenwriter_id) " \
           "VALUES (:visible, :name, :description, :year, :country_id, :language_id, :genre_id, :director_id, :screenwriter_id)"
     visible = 1
-    db.session.execute(sql, {"visible":visible, "name":name, "description":description, 
+    db.session.execute(sql, {"visible":visible, "name":name, "description":description,
                              "year":year, "country_id":country_id, "language_id":language_id,
                              "genre_id":genre_id, "director_id":director_id, "screenwriter_id":screenwriter_id})
     db.session.commit()
