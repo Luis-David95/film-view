@@ -47,7 +47,6 @@ Lista päivitetty lauantaina 1.5.
 
 - Puuttuvien ominaisuuksien toteuttaminen
 - Syötteiden validoinnin lisääminen ja tarkentaminen
-- CSRF-haavoittuvuuden korjaaminen
 - Ulkoasun ja käyttöliittymän parantelua
 
 ## Data
