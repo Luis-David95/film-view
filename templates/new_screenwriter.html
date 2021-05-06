@@ -14,7 +14,7 @@
     <textarea name="description" placeholder="Description" maxlength="500" rows="4" cols="45" class="menu"></textarea></p>
     <p>Country: <br>
         <select name="country_id" class="menu">
-            <option value="-1" disabled selected>Select country</option>
+            <option disabled selected>Select country</option>
             {% for country in countries %}
             {% if country[0] == 3 %}<optgroup label="Africa">{% endif %}
             {% if country[0] == 1 %}<optgroup label="Asia">{% endif %}

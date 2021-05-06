@@ -17,7 +17,7 @@
     <input type="number" name="year" min="1888" max="2021" placeholder="Year" size="7"></p>
     <p>Country: <br>
         <select name="country_id" class="menu">
-            <option value="-1" disabled selected>Select country</option>
+            <option disabled selected>Select country</option>
             {% for country in countries %}
             {% if country[0] == 3 %}<optgroup label="Africa">{% endif %}
             {% if country[0] == 1 %}<optgroup label="Asia">{% endif %}
@@ -34,7 +34,7 @@
         </select></p>
     <p>Language: <br>
         <select name="language_id" class="menu">
-            <option value="-1" disabled selected>Select language</option>
+            <option disabled selected>Select language</option>
             <option value="0">New language</option>
             {% for language in languages %}
             <option value="{{ language[0] }}">{{ language[1] }}</option>
@@ -45,15 +45,15 @@
         var language = document.getElementsByTagName("select")[1];
         language.onchange=function() {
             if (language.value === "0") {
-                document.getElementsByTagName("input")[2].style.display="inline";
+                document.getElementsByTagName("input")[3].style.display="inline";
             } else {
-                document.getElementsByTagName("input")[2].style.display="none";
+                document.getElementsByTagName("input")[3].style.display="none";
             }
         }
     </script>
     <p>Genre: <br>
         <select name="genre_id" class="menu">
-            <option value="-1" disabled selected>Select genre</option>
+            <option disabled selected>Select genre</option>
             <option value="0">New genre</option>
             {% for genre in genres %}
             <option value="{{ genre[0] }}">{{ genre[1] }}</option>
@@ -64,15 +64,15 @@
         var genre = document.getElementsByTagName("select")[2];
         genre.onchange=function() {
             if (genre.value === "0") {
-                document.getElementsByTagName("input")[3].style.display="inline";
+                document.getElementsByTagName("input")[4].style.display="inline";
             } else {
-                document.getElementsByTagName("input")[3].style.display="none";
+                document.getElementsByTagName("input")[4].style.display="none";
             }
         }
     </script>
     <p>Director: <br>
         <select name="director_id" class="menu">
-            <option value="-1" disabled selected>Select director</option>
+            <option disabled selected>Select director</option>
             {% for director in directors %}
             <option value="{{ director[0] }}">{{ director[1] }}</option>
             {% endfor %}
@@ -80,7 +80,7 @@
     Add new director <a href="/new_director">here</a></p>
     <p>Screenwriter: <br>
         <select name="screenwriter_id" class="menu">
-            <option value="-1" disabled selected>Select screenwriter</option>
+            <option disabled selected>Select screenwriter</option>
             {% for screenwriter in screenwriters %}
             <option value="{{ screenwriter[0] }}">{{ screenwriter[1] }}</option>
             {% endfor %}
