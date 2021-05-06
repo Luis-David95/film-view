@@ -10,10 +10,10 @@
 <div class="container">
 Film: <a href="/film/{{ film[0] }}">{{ film[2] }}</a>
 {% if film[1] == 1 %}
-<br>Status: Visible 
+<br>Status: Visible
 <br>Options: <a class="delete" href="/delete/{{ film[0] }}">[Delete]</a>
 {% else %}
-<br>Status: Deleted 
+<br>Status: Deleted
 <br>Options: <a class="restore" href="/restore/{{ film[0] }}">[Restore]</a>
 {% endif %}
 </div>

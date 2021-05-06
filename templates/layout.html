@@ -3,7 +3,7 @@
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 <title>FRA - {% block title %}{% endblock %}</title>
-<p><a href="/">Front page</a> | <a href="/statistics">Statistics</a> | 
+<p><a href="/">Front page</a> | <a href="/statistics">Statistics</a> |
 {% if session.user_id %}Logged in as <b>{{ session["username"] }}</b>
 <a href="/logout" class="secondary">(Log out)</a>
 {% else %}
