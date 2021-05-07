@@ -17,16 +17,25 @@ def visible(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()[0]
 
-def get_visible():
-    sql = "(SELECT f.id AS s_id, f.visible, f.name AS s_name, f.description, f.year, c.name, c.code, ROUND(AVG(r.grade),1) AS s_avg " \
+def get_visible(sort_by):
+    sql = "(SELECT f.id AS s_id, f.visible, f.name AS s_name, f.description, f.year AS s_year, c.name, c.code, ROUND(AVG(r.grade),1) AS s_avg " \
           "FROM films AS f, countries AS c, reviews AS r " \
           "WHERE f.id=r.film_id AND c.id=f.country_id AND visible=1 " \
           "GROUP BY f.id, c.name, c.code) " \
           "UNION " \
           "(SELECT f.id, f. visible, f.name, f.description, f.year, c.name, c.code, 0.0 " \
           "FROM films AS f, countries AS c " \
-          "WHERE c.id=f.country_id AND visible=1 AND NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id = r.film_id)) " \
-          "ORDER BY s_avg DESC"
+          "WHERE c.id=f.country_id AND visible=1 AND NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id = r.film_id)) "
+    if sort_by == 0:
+        sql = sql + "ORDER BY s_name"
+    elif sort_by == 1:
+        sql = sql + "ORDER BY s_avg DESC"
+    elif sort_by == 2:
+        sql = sql + "ORDER BY s_avg ASC"
+    elif sort_by == 3:
+        sql = sql + "ORDER BY s_year DESC"
+    elif sort_by == 4:
+        sql = sql + "ORDER BY s_year ASC"
     result = db.session.execute(sql)
     return result.fetchall()
 

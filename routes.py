@@ -2,10 +2,15 @@ from app import app
 from flask import abort, redirect, render_template, request, session, url_for
 import countries, directors, error, films, genres, languages, reviews, screenwriters, users
 
-@app.route("/")
+@app.route("/", methods=["get","post"])
 def index():
-    film_list = films.get_visible()
-    return render_template("index.html", films=film_list)
+    if request.method == "GET":
+        film_list = films.get_visible(0)
+        return render_template("index.html", films=film_list)
+    if request.method == "POST":
+        sort_by = int(request.form["sort-by"])
+        film_list = films.get_visible(sort_by)
+        return render_template("index.html", films=film_list)
 
 @app.route("/login", methods=["get","post"])
 def login():

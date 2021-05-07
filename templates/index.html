@@ -12,6 +12,18 @@
 <h2>Films</h2>
 <p>Get started by choosing a film</p>
 
+<p><form action="/" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <select name="sort-by">
+        <option value="0" selected>Default (A to Z)</option>
+        <option value="1">Highest rated first</option>
+        <option value="2">Lowest rated first</option>
+        <option value="3">Newest first</option>
+        <option value="4">Oldest first</option>
+    </select>
+    <input type="submit" value="Sort">
+</form></p>
+
 {% for film in films %}
 
 <div class="container">
