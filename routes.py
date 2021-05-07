@@ -8,6 +8,8 @@ def index():
         film_list = films.get_visible(0)
         return render_template("index.html", films=film_list)
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         sort_by = int(request.form["sort-by"])
         film_list = films.get_visible(sort_by)
         return render_template("index.html", films=film_list)
