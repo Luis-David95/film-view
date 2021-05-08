@@ -4,10 +4,19 @@
 
 <h3>Statistics</h3>
 
-<p>
-<span class="detail">Users</span> - {{ users }}<br>
-<span class="detail">Films</span> - {{ films }}<br>
-<span class="detail">Reviews</span> - {{ reviews }}<br>
-</p>
+<table>
+    <tr>
+        <td>Users</td>
+        <td class="right">{{ users }}</td>
+    </tr>
+    <tr>
+        <td>Films</td>
+        <td class="right">{{ films }}</td>
+    </tr>
+    <tr>
+        <td>Reviews</td>
+        <td class="right">{{ reviews }}</td>
+    </tr>
+</table>
 
 {% endblock %}

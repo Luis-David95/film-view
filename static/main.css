@@ -115,3 +115,13 @@ hr.divider {
 a.footer {
   color: #103f64;
 }
+
+table, th, td {
+  border: 1px solid #103f64;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+.right {
+  text-align: right;
+}
