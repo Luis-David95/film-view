@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Ban user{% endblock %}
+{% block content %}
+
+<h3>Ban user</h3>
+
+<p>Are you sure you want to ban user <b>{{ name }}</b>? This action can be reversed later.</p>
+
+<form action="/ban/{{ id }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Yes" />
+</form>
+
+{% endblock %}

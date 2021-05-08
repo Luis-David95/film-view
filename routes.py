@@ -212,10 +212,10 @@ def new_screenwriter():
             return error.message("Sending failed")
 
 @app.route("/films/")
-def manage():
+def manage_films():
     users.require_status(1)
-    films_list = films.get_all()
-    return render_template("films.html", films=films_list)
+    film_list = films.get_all()
+    return render_template("films.html", films=film_list)
 
 @app.route("/delete/<int:id>", methods=["get","post"])
 def delete(id):
@@ -246,6 +246,57 @@ def restore(id):
             return redirect("/")
         else:
             return error.message("Restoring film failed")
+
+@app.route("/users/")
+def manage_users():
+    users.require_status(1)
+    user_list = users.get_list()
+    return render_template("users.html", users=user_list)
+
+@app.route("/promote/<int:id>", methods=["get","post"])
+def promote(id):
+    if request.method == "GET":
+        users.exists(id)
+        users.require_status(1)
+        name = users.get_name(id)
+        return render_template("promote.html", name=name, id=id)
+    if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
+        if users.promote(id):
+            return redirect("/users")
+        else:
+            return error.message("Promoting user failed")
+
+@app.route("/ban/<int:id>", methods=["get","post"])
+def ban(id):
+    if request.method == "GET":
+        users.exists(id)
+        users.require_status(1)
+        name = users.get_name(id)
+        return render_template("ban.html", name=name, id=id)
+    if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
+        if users.ban(id):
+            return redirect("/users")
+        else:
+            return error.message("Banning user failed")
+
+@app.route("/unban/<int:id>", methods=["get","post"])
+def unban(id):
+    if request.method == "GET":
+        users.exists(id)
+        users.require_status(1)
+        name = users.get_name(id)
+        return render_template("unban.html", name=name, id=id)
+    if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
+        if users.unban(id):
+            return redirect("/users")
+        else:
+            return error.message("Banning user failed")
 
 @app.route("/film/<int:id>")
 def film(id):

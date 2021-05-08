@@ -21,19 +21,19 @@ a:hover {
   text-decoration: underline;
 }
 
-a.delete:link {
+a.negative:link {
   color: #f73441;
 }
 
-a.delete:visited {
+a.negative:visited {
   color: #f73441;
 }
 
-a.restore:link {
+a.positive:link {
   color: #4bf734;
 }
 
-a.restore:visited {
+a.positive:visited {
   color: #4bf734;
 }
 
@@ -120,4 +120,5 @@ table, th, td {
   border: 1px solid #103f64;
   border-collapse: collapse;
   padding: 10px;
+  margin-bottom: 20px;
 }

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}Manage users{% endblock %}
+{% block content %}
+
+<h3>Manage users</h3>
+
+<p>Here you can see all relevant information about registered users and take administrative actions.</p>
+
+{% for user in users %}
+<table>
+    <tr>
+        <td></td>
+        <td><b>{{ user[1] }}</b></td>
+    </tr>
+{% if user[2] == 1 %}
+    <tr>
+        <td>Rank</td>
+        <td>Administrator</td>
+    </tr>
+{% else %}
+<tr>
+    <td>Rank</td>
+    <td>User</td>
+</tr>
+{% if user[3] == 1 %}
+<tr>
+    <td>Status</td>
+    <td>Banned</td>
+</tr>
+{% else %}
+<tr>
+    <td>Status</td>
+    <td>Unbanned</td>
+</tr>
+{% endif %}
+{% endif %}
+{% if user[2] == 0 %}
+<tr>
+    <td>Options</td>
+    <td>
+        {% if user[3] == 0 %}
+        <a class="positive" href="/promote/{{ user[0] }}">[Promote]</a>
+        {% endif %}
+        {% if user[3] == 0 %}
+        <a class="negative" href="/ban/{{ user[0] }}">[Ban]</a>
+        {% else %}
+        <a class="positive" href="/unban/{{ user[0] }}">[Unban]</a></td>
+        {% endif %}
+</tr>
+{% endif %}
+</table>
+{% endfor %}
+
+{% endblock %}

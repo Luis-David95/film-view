@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Promote user{% endblock %}
+{% block content %}
+
+<h3>Promote user</h3>
+
+<p>Are you sure you want to promote user <b>{{ name }}</b> to administrator status? This action cannot be reversed.</p>
+
+<form action="/promote/{{ id }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Yes" />
+</form>
+
+{% endblock %}

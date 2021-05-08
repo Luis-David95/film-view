@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Unban user{% endblock %}
+{% block content %}
+
+<h3>Unban user</h3>
+
+<p>Are you sure you want to unban user <b>{{ name }}</b>? This action can be reversed later.</p>
+
+<form action="/unban/{{ id }}" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="submit" value="Yes" />
+</form>
+
+{% endblock %}

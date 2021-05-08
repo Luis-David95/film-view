@@ -42,6 +42,38 @@ def register(username, password, country_id):
         return False
     return login(username, password)
 
+def get_list():
+    sql = "SELECT u.id, u.username, u.admin, u.banned, TO_CHAR(u.registered, 'D Month YYYY'), " \
+          "TO_CHAR(u.last_login, 'D Month YYYY - HH24:MI'), c.name, c.code " \
+          "FROM users AS u, countries AS c " \
+          "WHERE c.id = u.country_id"
+    result = db.session.execute(sql)
+    return result.fetchall()
+
+def exists(id):
+    sql = "SELECT COUNT(1) FROM users WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    if result.fetchone()[0] == 0:
+        abort(404)
+
+def promote(id):
+    sql = "UPDATE users SET admin=1 WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
+
+def ban(id):
+    sql = "UPDATE users SET banned=1 WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
+
+def unban(id):
+    sql = "UPDATE users SET banned=0 WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
+
 def count():
     sql = "SELECT COUNT(*) FROM users"
     result = db.session.execute(sql)
@@ -54,6 +86,11 @@ def count_admins():
 
 def get_user_id():
     return session.get("user_id", 0)
+
+def get_name(id):
+    sql = "SELECT username FROM users WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchone()[0]
 
 def is_admin(username):
     sql = "SELECT admin FROM users WHERE username=:username"
