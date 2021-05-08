@@ -24,6 +24,11 @@
     <input type="submit" value="Sort">
 </form></p>
 
+<p><form action="/search" method="GET">
+    <input type="text" placeholder="Search film by name" name="query">
+    <input type="submit" value="Search">
+</form></p>
+
 {% for film in films %}
 
 <div class="container">

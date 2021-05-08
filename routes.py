@@ -14,6 +14,12 @@ def index():
         film_list = films.get_visible(sort_by)
         return render_template("index.html", films=film_list)
 
+@app.route("/search")
+def search():
+    query = request.args["query"]
+    results = films.get_search_results(query)
+    return render_template("index.html", films=results)
+
 @app.route("/login", methods=["get","post"])
 def login():
     if request.method == "GET":
