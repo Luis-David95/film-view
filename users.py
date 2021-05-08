@@ -84,6 +84,11 @@ def count_admins():
     result = db.session.execute(sql)
     return result.fetchone()[0]
 
+def count_banned():
+    sql = "SELECT COUNT(*) FROM users WHERE banned=1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
 def get_user_id():
     return session.get("user_id", 0)
 
