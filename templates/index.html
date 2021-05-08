@@ -10,7 +10,14 @@
 {% endif %}
 
 <h2>Films</h2>
-<p>Get started by choosing a film</p>
+
+{% if session.is_admin %}
+<p></p>
+{% elif session.user_id %}
+<p>Get started by choosing a film from the list below.</p>
+{% else %}
+<p><a href="/login">Log in</a> or <a href="/register">register</a> to write a review.</p>
+{% endif %}
 
 <p><form action="/sort" method="get">
     <select name="sort-by">
