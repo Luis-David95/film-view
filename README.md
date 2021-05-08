@@ -18,7 +18,7 @@ Lista päivitetty lauantaina 8.5.
 - Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen
 - Käyttäjä on peruskäyttäjä tai ylläpitäjä
 - Sivustolla on tilastosivu, johon kootaan tietokannasta keskeisiä tietoja
-- Sivustolla listataan tietokannasta löytyvät elokuvat
+- Etusivulla listataan tietokannasta löytyvät elokuvat
 - Elokuvan nimeä klikkaamalla saadaan näkyviin lisää tietoa elokuvasta:
   - Nimi (name)
   - Kuvaus (description)
@@ -40,18 +40,17 @@ Lista päivitetty lauantaina 8.5.
   - Vuoden perusteella vanhimmasta uusimpaan
 - Elokuvia voi hakea:
   - Nimen perusteella
-- Ylläpitäjä voi lisätä uuden elokuvan
 - Ylläpitäjä voi hallinnoida elokuvia:
-  - Ylläpitäjä voi poistaa elokuvan näkyvistä
-  - Ylläpitäjä voi palauttaa poistetun elokuvan näkyviin
+  - Uuden elokuvan lisääminen
+  - Elokuvan poistaminen näkyvistä
+  - Poistetun elokuvan palauttaminen näkyville
+- Ylläpitäjä voi hallinnoida käyttäjiä:
+  - Tavallinen käyttäjä voidaan ylentää ylläpitäjäksi
+  - Tavallinen käyttäjä voidaan asettaa porttikieltoon
+    - Porttikiellon saanut käyttäjä ei voi enää kirjautua sisään
+    - Porttikiellon saaneen käyttäjän kirjoittamat arvostelut poistuvat näkyviltä eivätkä enää vaikuta tilastoihin
+  - Käyttäjän saama porttikielto voidaan myös perua
 - Ylläpitäjä voi generoida listan maista ja maanosista
-
-## To-do
-
-- Elokuvan tietojen muokkaustoiminto
-- Arvioiden muokkaus- ja/tai poistotoiminto
-- Syötteiden validoinnin lisääminen ja tarkentaminen
-- Ulkoasun ja käyttöliittymän parantelua
 
 ## Data
 - Valtioiden tiedot: [un.org](https://www.un.org/en/about-us/member-states)
