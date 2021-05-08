@@ -5,7 +5,7 @@ Sovelluksessa listataan tietoa elokuvista, joille käyttäjät voivat kirjoittaa
 ## Testaaminen
 
 Sovellusta voi testata osoitteessa https://tsoha-elokuvasovellus.herokuapp.com/  
-Heroku päivitetty perjantaina 7.5.
+Heroku päivitetty lauantaina 8.5.
 
 Sovelluksessa on yksi pääkäyttäjä, jonka tunnus on **admin** ja salasana **password**. Vain tälle käyttäjälle on näkyvissä etusivulla "admin-paneeli", jonka kautta voidaan lisätä uusia elokuvia sovellukseen. Ylläpitäjätunnuksella voi testata uuden elokuvan lisäämistä. Huomaathan, että maalistauksen generoiva painike ei toimi Herokussa enää toista kertaa, sillä sitä on jo painettu. Sen toimivuuden voi todeta uutta elokuvaa luodessa siitä, että valikosta löytyy lista maista, jotka on luettu tiedostosta [countries.csv](https://github.com/rvrauhala/tsoha-elokuvasovellus/blob/main/data/countries.csv). Katso myös tiedosto [countries.py](https://github.com/rvrauhala/tsoha-elokuvasovellus/blob/main/countries.py), josta löytyy listauksen generoiva koodi.
 
@@ -13,7 +13,7 @@ Sovelluksen testaamista ja elokuva-arvosteluiden lisäämistä varten kannattaa 
 
 ## Ominaisuudet
 
-Lista päivitetty perjantaina 7.5.
+Lista päivitetty lauantaina 8.5.
 
 - Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen
 - Käyttäjä on peruskäyttäjä tai ylläpitäjä
@@ -38,6 +38,8 @@ Lista päivitetty perjantaina 7.5.
   - Arvosanan perusteella huonoimmasta parhaimpaan
   - Vuoden perusteella uusimmasta vanhimpaan
   - Vuoden perusteella vanhimmasta uusimpaan
+- Elokuvia voi hakea:
+  - Nimen perusteella
 - Ylläpitäjä voi lisätä uuden elokuvan
 - Ylläpitäjä voi hallinnoida elokuvia:
   - Ylläpitäjä voi poistaa elokuvan näkyvistä
@@ -46,7 +48,6 @@ Lista päivitetty perjantaina 7.5.
 
 ## To-do
 
-- Hakutoiminto
 - Elokuvan tietojen muokkaustoiminto
 - Arvioiden muokkaus- ja/tai poistotoiminto
 - Syötteiden validoinnin lisääminen ja tarkentaminen
