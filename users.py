@@ -18,6 +18,9 @@ def login(username, password):
                 session["is_admin"] = True
             else:
                 session["is_admin"] = False
+            sql = "UPDATE users SET last_login = NOW() WHERE username=:username"
+            db.session.execute(sql, {"username":username})
+            db.session.commit()
             return True
         else:
             return False
@@ -30,10 +33,10 @@ def logout():
 
 def register(username, password, country_id):
     hash_value = generate_password_hash(password)
-    admin = 0
     try:
-        sql = "INSERT INTO users (username, password, admin, country_id) VALUES (:username, :password, :admin, :country_id)"
-        db.session.execute(sql, {"username":username, "password":hash_value, "admin":admin, "country_id":country_id})
+        sql = "INSERT INTO users (username, password, admin, banned, country_id, registered) " \
+              "VALUES (:username, :password, 0, 0, :country_id, NOW())"
+        db.session.execute(sql, {"username":username, "password":hash_value, "country_id":country_id})
         db.session.commit()
     except:
         return False

@@ -15,6 +15,9 @@ CREATE TABLE users (
     username TEXT UNIQUE,
     password TEXT,
     admin INTEGER,
+    banned INTEGER,
+    registered TIMESTAMP,
+    last_login TIMESTAMP,
     country_id INTEGER REFERENCES countries
 );
 
