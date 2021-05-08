@@ -253,6 +253,8 @@ def new_review(id):
         content = request.form["content"]
         if len(content) < 10:
             return error.message("Review content too short or doesn't exist")
+        elif len(content) > 1000:
+            return error.message("Review content too long")
         grade = int(request.form["grade"])
         if reviews.send(user_id, film_id, content, grade):
             return redirect(url_for("film", id=id))
