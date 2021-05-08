@@ -1,6 +1,6 @@
 from app import app
 from flask import abort, redirect, render_template, request, session, url_for
-import countries, directors, error, films, genres, languages, reviews, screenwriters, users
+import countries, directors, error, films, genres, languages, reviews, screenwriters, statistics, users
 
 @app.route("/")
 def index():
@@ -54,11 +54,17 @@ def register():
             return error.message("Registration failed")
 
 @app.route("/statistics")
-def statistics():
+def stats():
     user_count = users.count()
+    admin_count = users.count_admins()
     film_count = films.count()
     review_count = reviews.count()
-    return render_template("statistics.html", users=user_count, films=film_count, reviews=review_count)
+    highest = reviews.get_highest_rated()
+    lowest = reviews.get_lowest_rated()
+    average = reviews.get_average_grade()
+    most_active = reviews.get_most_active_user()
+    return render_template("statistics.html", users=user_count, admins=admin_count, films=film_count, reviews=review_count,
+                                              highest=highest, lowest=lowest, average=average, most_active=most_active)
 
 @app.route("/countries", methods=["get","post"])
 def country():

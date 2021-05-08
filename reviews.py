@@ -20,6 +20,39 @@ def get_grade_details(film_id):
     result = db.session.execute(sql, {"film_id":film_id})
     return result.fetchall()
 
+def get_highest_rated():
+    sql = "SELECT f.name, AVG(r.grade) AS average " \
+          "FROM films AS f, reviews AS r " \
+          "WHERE f.id=r.film_id AND visible=1 " \
+          "GROUP BY f.id " \
+          "ORDER BY average DESC"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def get_lowest_rated():
+    sql = "SELECT f.name, AVG(r.grade) AS average " \
+          "FROM films AS f, reviews AS r " \
+          "WHERE f.id=r.film_id AND visible=1 " \
+          "GROUP BY f.id " \
+          "ORDER BY average ASC"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def get_average_grade():
+    sql = "SELECT ROUND(AVG(grade),1) FROM reviews"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def get_most_active_user():
+    sql = "SELECT u.username " \
+          "FROM users AS u, reviews AS r " \
+          "WHERE r.user_id=u.id " \
+          "GROUP BY u.username " \
+          "ORDER BY COUNT(r.grade) DESC LIMIT 1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+
 def send(user_id, film_id, content, grade):
     sql = "INSERT INTO reviews (user_id, film_id, content, grade, submitted) " \
           "VALUES (:user_id, :film_id, :content, :grade, NOW())"
