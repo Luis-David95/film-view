@@ -92,6 +92,21 @@ def count_banned():
     result = db.session.execute(sql)
     return result.fetchone()[0]
 
+def oldest_user():
+    sql = "SELECT username FROM users GROUP BY username, registered ORDER BY registered ASC LIMIT 1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def newest_user():
+    sql = "SELECT username FROM users GROUP BY username, registered ORDER BY registered DESC LIMIT 1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def last_to_login():
+    sql = "SELECT username FROM users GROUP BY username, last_login ORDER BY last_login DESC LIMIT 1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
 def get_user_id():
     return session.get("user_id", 0)
 
