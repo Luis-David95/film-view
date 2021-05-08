@@ -12,8 +12,7 @@
 <h2>Films</h2>
 <p>Get started by choosing a film</p>
 
-<p><form action="/" method="post">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+<p><form action="/sort" method="get">
     <select name="sort-by">
         <option value="0" selected>Default (A to Z)</option>
         <option value="1">Highest rated first</option>
@@ -24,7 +23,7 @@
     <input type="submit" value="Sort">
 </form></p>
 
-<p><form action="/search" method="GET">
+<p><form action="/search" method="get">
     <input type="text" placeholder="Search film by name" name="query">
     <input type="submit" value="Search">
 </form></p>

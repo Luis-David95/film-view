@@ -2,23 +2,22 @@ from app import app
 from flask import abort, redirect, render_template, request, session, url_for
 import countries, directors, error, films, genres, languages, reviews, screenwriters, users
 
-@app.route("/", methods=["get","post"])
+@app.route("/")
 def index():
-    if request.method == "GET":
-        film_list = films.get_visible(0)
-        return render_template("index.html", films=film_list)
-    if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
-        sort_by = int(request.form["sort-by"])
-        film_list = films.get_visible(sort_by)
-        return render_template("index.html", films=film_list)
+    film_list = films.get_visible(0)
+    return render_template("index.html", films=film_list)
+
+@app.route("/sort")
+def sort():
+    sort_by = int(request.args["sort-by"])
+    film_list = films.get_visible(sort_by)
+    return render_template("index.html", films=film_list)
 
 @app.route("/search")
 def search():
     query = request.args["query"]
-    results = films.get_search_results(query)
-    return render_template("index.html", films=results)
+    film_list = films.get_search_results(query)
+    return render_template("index.html", films=film_list)
 
 @app.route("/login", methods=["get","post"])
 def login():
