@@ -41,6 +41,10 @@ a.restore:visited {
   color: red;
 }
 
+.success {
+  color: green;
+}
+
 .menu {
   width: 300px;
 }

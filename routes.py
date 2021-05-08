@@ -78,7 +78,8 @@ def country():
     if request.method == "GET":
         users.require_status(1)
         count = countries.count()
-        return render_template("countries.html", count=count)
+        country_list = countries.get_details()
+        return render_template("countries.html", count=count, countries=country_list)
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
             abort(403)

@@ -4,8 +4,22 @@
 
 <h3>Countries</h3>
 
-<p><b>Status: </b>
+<p>
 {% if count == 193 %}<span class="success">List created, {{ count }} / 193 countries in database</span>
+<table>
+    <tr>
+        <th>Flag</th>
+        <th>Country</th>
+        <th>Continent</th>
+    </tr>
+{% for country in countries %}
+    <tr>
+        <td><img src="https://www.countryflags.io/{{ country[0] }}/flat/32.png" title="{{ country[1] }}" ></td>
+        <td>{{ country[1] }}</td>
+        <td>{{ country[2] }}</td>
+    </tr>
+{% endfor %}
+</table>
 {% elif count == 0 %}<span class="error">Ready to create list, {{ count }} / 193 countries in database</span>
 {% else %}<span class="error">If you see this text, something went wrong...</span>
 {% endif %}</p>

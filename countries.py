@@ -47,3 +47,10 @@ def get_list():
     sql = "SELECT id, name FROM countries ORDER BY continent_id, name"
     result = db.session.execute(sql)
     return result.fetchall()
+
+def get_details():
+    sql = "SELECT ct.code, ct.name, cn.name " \
+          "FROM countries AS ct, continents AS cn " \
+          "WHERE cn.id=ct.continent_id"
+    result = db.session.execute(sql)
+    return result.fetchall()
