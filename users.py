@@ -4,10 +4,13 @@ from flask import abort, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 def login(username, password):
-    sql = "SELECT password, id, username FROM users WHERE username=:username"
+    sql = "SELECT password, id, username, banned FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
+    banned = user[3]
     if user == None:
+        return False
+    if banned == 1:
         return False
     else:
         if check_password_hash(user[0], password):

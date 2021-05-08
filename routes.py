@@ -29,7 +29,7 @@ def login():
         if users.login(username, password):
             return redirect("/")
         else:
-            return error.message("Wrong username or password")
+            return error.message("Logging in failed")
 
 @app.route("/logout")
 def logout():
