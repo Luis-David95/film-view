@@ -44,7 +44,11 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.register(username, password):
+        try:
+            country_id = int(request.form["country_id"])
+        except:
+            return error.message("Please select a country from the list")
+        if users.register(username, password, country_id):
             return redirect("/")
         else:
             return error.message("Registration failed")
