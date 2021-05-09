@@ -19,6 +19,30 @@ def search():
     film_list = films.get_search_results(query)
     return render_template("index.html", films=film_list)
 
+@app.route("/statistics")
+def stats():
+    user_count = users.count()
+    admin_count = users.count_admins()
+    banned_count = users.count_banned()
+    most_active = reviews.get_most_active_user()
+    oldest_user = users.oldest_user()
+    newest_user = users.newest_user()
+    last_to_login = users.last_to_login()
+    film_count = films.count()
+    review_count = reviews.count()
+    highest = reviews.get_highest_rated()
+    lowest = reviews.get_lowest_rated()
+    average = reviews.get_average_grade()
+    country_count = countries.count()
+    language_count = languages.count()
+    genre_count = genres.count()
+    director_count = directors.count()
+    screenwriter_count = screenwriters.count()
+    return render_template("statistics.html", users=user_count, admins=admin_count, banned=banned_count, most_active=most_active,
+                                              oldest=oldest_user, newest=newest_user, last_to_login=last_to_login, films=film_count,
+                                              reviews=review_count, highest=highest, lowest=lowest, average=average, countries=country_count,
+                                              languages=language_count, genres=genre_count, directors=director_count, screenwriters=screenwriter_count)
+
 @app.route("/login", methods=["get","post"])
 def login():
     if request.method == "GET":
@@ -52,45 +76,6 @@ def register():
             return redirect("/")
         else:
             return error.message("Registration failed")
-
-@app.route("/statistics")
-def stats():
-    user_count = users.count()
-    admin_count = users.count_admins()
-    banned_count = users.count_banned()
-    most_active = reviews.get_most_active_user()
-    oldest_user = users.oldest_user()
-    newest_user = users.newest_user()
-    last_to_login = users.last_to_login()
-    film_count = films.count()
-    review_count = reviews.count()
-    highest = reviews.get_highest_rated()
-    lowest = reviews.get_lowest_rated()
-    average = reviews.get_average_grade()
-    country_count = countries.count()
-    language_count = languages.count()
-    genre_count = genres.count()
-    director_count = directors.count()
-    screenwriter_count = screenwriters.count()
-    return render_template("statistics.html", users=user_count, admins=admin_count, banned=banned_count, most_active=most_active,
-                                              oldest=oldest_user, newest=newest_user, last_to_login=last_to_login, films=film_count,
-                                              reviews=review_count, highest=highest, lowest=lowest, average=average, countries=country_count,
-                                              languages=language_count, genres=genre_count, directors=director_count, screenwriters=screenwriter_count)
-
-@app.route("/countries", methods=["get","post"])
-def country():
-    if request.method == "GET":
-        users.require_status(1)
-        count = countries.count()
-        country_list = countries.get_details()
-        return render_template("countries.html", count=count, countries=country_list)
-    if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
-        if countries.create_list():
-            return redirect("/countries")
-        else:
-            return error.message("Creating country list failed, perhaps it already exists?")
 
 @app.route("/new_film", methods=["get","post"])
 def new_film():
@@ -301,6 +286,21 @@ def unban(id):
             return redirect("/users")
         else:
             return error.message("Banning user failed")
+
+@app.route("/countries", methods=["get","post"])
+def country():
+    if request.method == "GET":
+        users.require_status(1)
+        count = countries.count()
+        country_list = countries.get_details()
+        return render_template("countries.html", count=count, countries=country_list)
+    if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
+        if countries.create_list():
+            return redirect("/countries")
+        else:
+            return error.message("Creating country list failed, perhaps it already exists?")
 
 @app.route("/film/<int:id>")
 def film(id):
