@@ -1,0 +1,69 @@
+Table continents {
+  id INTEGER [pk, increment]
+  name TEXT
+}
+
+Table countries {
+  id INTEGER [pk, increment]
+  name TEXT
+  code TEXT
+  continent_id INTEGER [ref: > continents.id]
+}
+
+Table users {
+  id INTEGER [pk, increment]
+  username TEXT [unique]
+  password TEXT
+  admin INTEGER
+  banned INTEGER
+  registered TIMESTAMP
+  last_login TIMESTAMP
+  country_id INTEGER [ref: > countries.id]
+}
+
+Table directors {
+  id INTEGER [pk, increment]
+  name TEXT [unique]
+  description TEXT
+  country_id INTEGER [ref: > countries.id]
+}
+
+Table screenwriters {
+  id INTEGER [pk, increment]
+  name TEXT [unique]
+  description TEXT
+  country_id INTEGER [ref: > countries.id]
+}
+
+
+Table languages {
+  id INTEGER [pk, increment]
+  name TEXT [unique]
+}
+
+Table genres {
+  id INTEGER [pk, increment]
+  name TEXT [unique]
+}
+
+Table films {
+  id INTEGER [pk, increment]
+  visible INTEGER
+  name TEXT [unique]
+  description TEXT
+  year INTEGER
+  country_id INTEGER [ref: > countries.id]
+  language_id INTEGER [ref: > languages.id]
+  genre_id INTEGER [ref: > genres.id]
+  director_id INTEGER [ref: > directors.id]
+  screenwriter_id INTEGER [ref: > screenwriters.id]
+}
+
+Table reviews {
+  id INTEGER [pk, increment]
+  user_id INTEGER [ref: > users.id]
+  film_id INTEGER [ref: > films.id]
+  content TEXT
+  grade INTEGER
+  submitted TIMESTAMP
+}
