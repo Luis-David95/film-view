@@ -34,12 +34,12 @@ def logout():
     del session["is_admin"]
     del session["csrf_token"]
 
-def register(username, password, country_id):
+def register(username, password):
     hash_value = generate_password_hash(password)
     try:
-        sql = "INSERT INTO users (username, password, admin, banned, country_id, registered) " \
-              "VALUES (:username, :password, 0, 0, :country_id, NOW())"
-        db.session.execute(sql, {"username":username, "password":hash_value, "country_id":country_id})
+        sql = "INSERT INTO users (username, password, admin, banned, registered) " \
+              "VALUES (:username, :password, 0, 0, NOW())"
+        db.session.execute(sql, {"username":username, "password":hash_value})
         db.session.commit()
     except:
         return False
