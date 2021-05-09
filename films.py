@@ -20,12 +20,12 @@ def visible(id):
 def get_visible(sort_by):
     sql = "(SELECT f.id AS s_id, f.visible, f.name AS s_name, f.description, f.year AS s_year, c.name, c.code, ROUND(AVG(r.grade),1) AS s_avg " \
           "FROM films AS f, countries AS c, reviews AS r, users AS u " \
-          "WHERE f.id=r.film_id AND c.id=f.country_id AND visible=1 AND u.id=r.user_id AND u.banned = 0 " \
+          "WHERE f.id=r.film_id AND c.id=f.country_id AND visible=1 AND u.id=r.user_id AND u.banned=0 " \
           "GROUP BY f.id, c.name, c.code) " \
           "UNION " \
           "(SELECT f.id, f. visible, f.name, f.description, f.year, c.name, c.code, 0.0 " \
           "FROM films AS f, countries AS c, reviews AS r, users AS u " \
-          "WHERE c.id=f.country_id AND visible=1 AND NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id = r.film_id) AND u.id=r.user_id AND u.banned = 0) "
+          "WHERE c.id=f.country_id AND visible=1 AND NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id=r.film_id) AND u.id=r.user_id AND u.banned=0) "
     if sort_by == 0:
         sql = sql + "ORDER BY s_name"
     elif sort_by == 1:
@@ -42,12 +42,12 @@ def get_visible(sort_by):
 def get_search_results(query):
     sql = "(SELECT f.id AS s_id, f.visible, f.name AS s_name, f.description, f.year AS s_year, c.name, c.code, ROUND(AVG(r.grade),1) AS s_avg " \
           "FROM films AS f, countries AS c, reviews AS r, users AS u " \
-          "WHERE f.id=r.film_id AND c.id=f.country_id AND visible=1 AND u.id=r.user_id AND u.banned = 0 AND f.name LIKE :query " \
+          "WHERE f.id=r.film_id AND c.id=f.country_id AND visible=1 AND u.id=r.user_id AND u.banned=0 AND f.name LIKE :query " \
           "GROUP BY f.id, c.name, c.code) " \
           "UNION " \
           "(SELECT f.id, f. visible, f.name, f.description, f.year, c.name, c.code, 0.0 " \
           "FROM films AS f, countries AS c, reviews AS r, users AS u " \
-          "WHERE c.id=f.country_id AND visible=1 AND f.name LIKE :query AND NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id = r.film_id) AND u.id=r.user_id AND u.banned = 0) " \
+          "WHERE c.id=f.country_id AND visible=1 AND f.name LIKE :query AND NOT EXISTS (SELECT * FROM reviews AS r WHERE f.id=r.film_id) AND u.id=r.user_id AND u.banned=0) " \
           "ORDER BY s_name"
     result = db.session.execute(sql, {"query":"%"+query+"%", "queryGROUP":"%"+query+"%"})
     return result.fetchall()

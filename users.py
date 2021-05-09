@@ -21,7 +21,7 @@ def login(username, password):
                 session["is_admin"] = True
             else:
                 session["is_admin"] = False
-            sql = "UPDATE users SET last_login = NOW() WHERE username=:username"
+            sql = "UPDATE users SET last_login=NOW() WHERE username=:username"
             db.session.execute(sql, {"username":username})
             db.session.commit()
             return True
@@ -49,7 +49,7 @@ def get_list():
     sql = "SELECT u.id, u.username, u.admin, u.banned, TO_CHAR(u.registered, 'D Month YYYY'), " \
           "TO_CHAR(u.last_login, 'D Month YYYY - HH24:MI'), c.name, c.code " \
           "FROM users AS u, countries AS c " \
-          "WHERE c.id = u.country_id"
+          "WHERE c.id=u.country_id"
     result = db.session.execute(sql)
     return result.fetchall()
 
