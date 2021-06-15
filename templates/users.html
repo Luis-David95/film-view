@@ -12,6 +12,8 @@
         <td><b>User</b></td>
         <td><b>Rank</b></td>
         <td><b>Status</b></td>
+        <td><b>Registered on</b></td>
+        <td><b>Last login at</b></td>
         <td><b>Actions</b></td>
     </tr>
     {% for user in users %}
@@ -28,6 +30,8 @@
         {% else %}
         <td>Unbanned</td>
         {% endif %}
+        <td>{{ user[4] }}</td>
+        <td>{{ user[5] }}</td>
         {% if user[2] == 0 %}
         <td>
         {% if user[3] == 0 %}
