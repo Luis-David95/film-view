@@ -6,49 +6,40 @@
 
 <p>Here you can see all relevant information about registered users and take administrative actions.</p>
 
-{% for user in users %}
 <table>
     <tr>
-        <td></td>
-        <td><b>{{ user[1] }}</b></td>
+        <td><b>User</b></td>
+        <td><b>Rank</b></td>
+        <td><b>Status</b></td>
+        <td><b>Actions</b></td>
     </tr>
-{% if user[2] == 1 %}
+    {% for user in users %}
     <tr>
-        <td>Rank</td>
+        <td>{{ user[1] }}</td>
+        {% if user[2] == 1 %}
         <td>Administrator</td>
-    </tr>
-{% else %}
-<tr>
-    <td>Rank</td>
-    <td>User</td>
-</tr>
-{% if user[3] == 1 %}
-<tr>
-    <td>Status</td>
-    <td>Banned</td>
-</tr>
-{% else %}
-<tr>
-    <td>Status</td>
-    <td>Unbanned</td>
-</tr>
-{% endif %}
-{% endif %}
-{% if user[2] == 0 %}
-<tr>
-    <td>Options</td>
-    <td>
+        {% else %}
+        <td>User</td>
+        {% endif %}
+        {% if user[3] == 1 %}
+        <td>Banned</td>
+        {% else %}
+        <td>Unbanned</td>
+        {% endif %}
+        {% if user[2] == 0 %}
+        <td>
         {% if user[3] == 0 %}
         <a class="positive" href="/promote/{{ user[0] }}">[Promote]</a>
         {% endif %}
         {% if user[3] == 0 %}
         <a class="negative" href="/ban/{{ user[0] }}">[Ban]</a>
         {% else %}
-        <a class="positive" href="/unban/{{ user[0] }}">[Unban]</a></td>
+        <a class="positive" href="/unban/{{ user[0] }}">[Unban]</a>
+        </td>
         {% endif %}
-</tr>
-{% endif %}
+        {% endif %}
+    </tr>
+    {% endfor %}
 </table>
-{% endfor %}
 
 {% endblock %}
