@@ -8,6 +8,7 @@
 
 <table>
     <tr>
+        <td><b>Id</b></td>
         <td><b>User</b></td>
         <td><b>Rank</b></td>
         <td><b>Status</b></td>
@@ -15,6 +16,7 @@
     </tr>
     {% for user in users %}
     <tr>
+        <td>{{ user[0] }}</td>
         <td>{{ user[1] }}</td>
         {% if user[2] == 1 %}
         <td>Administrator</td>
