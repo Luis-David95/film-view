@@ -61,6 +61,9 @@ Please do not submit any offensive content or sensitive data.
   - By name
 
 ## Data
-- Valtioiden tiedot: [un.org](https://www.un.org/en/about-us/member-states)
-- Valtioiden liput: [countryflags.io](https://www.countryflags.io/)
+
+Third-party data used by the application.
+
+- Countries: [un.org](https://www.un.org/en/about-us/member-states)
+- Flags: [countryflags.io](https://www.countryflags.io/)
 - Favicon: [favicon.io](https://favicon.io/)
