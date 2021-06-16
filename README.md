@@ -4,6 +4,10 @@
 
 **Film review app** is a simple web application for writing film reviews. Every user account is either a regular *user* or an *admin* with additional privileges. Administrators may add new films to the database and ban/unban or promote regular users. The application was developed using the [Flask](https://palletsprojects.com/p/flask/) web application framework. A [PostgreSQL](https://www.postgresql.org/) database is used to store all relevant information needed by the application. Also, a demo version of the app is hosted on [Heroku](https://www.heroku.com/home).
 
+## How to install
+
+(To-do)
+
 ## Testaaminen
 
 Sovellusta voi testata osoitteessa https://rvr-fra.herokuapp.com/
