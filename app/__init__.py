@@ -20,4 +20,4 @@ def page_not_found(error):
 def internal_server_error(error):
    return render_template("error.html", message="500 - Internal server error")
 
-import routes
+from app import routes

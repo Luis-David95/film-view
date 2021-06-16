@@ -1,5 +1,5 @@
 from flask import abort
-from db import db
+from app.db import db
 
 def count():
     sql = "SELECT COUNT(*) FROM films WHERE visible=1"

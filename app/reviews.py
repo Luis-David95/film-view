@@ -1,5 +1,5 @@
-from db import db
-import users
+from app.db import db
+from app import users
 
 def count():
     sql = "SELECT COUNT(*) " \
