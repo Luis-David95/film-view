@@ -6,7 +6,7 @@ Sovelluksessa listataan tietoa elokuvista, joille käyttäjät voivat kirjoittaa
 
 Sovellusta voi testata osoitteessa https://rvr-fra.herokuapp.com/
 
-Sovelluksessa on yksi julkinen pääkäyttäjä, jonka tunnus on **admin** ja salasana **password**. Tälle käyttäjälle on näkyvissä etusivulla "admin-paneeli", jonka kautta voidaan lisätä uusia elokuvia sovellukseen, hallinnoida elokuvia ja käyttäjiä sekä generoida [tiedostosta](https://github.com/rvrauhala/tsoha-elokuvasovellus/blob/main/data/countries.csv) maalistaus sovelluksen käyttöön. Ylläpitäjätunnuksella voi testata vain ylläpitäjälle tarkoitettuja toimintoja. Huomaathan, että maalistauksen generoiva painike ei toimi Herokussa enää toista kertaa, sillä sitä on jo painettu.
+Sovelluksessa on yksi julkinen pääkäyttäjä, jonka tunnus on **admin** ja salasana **password**. Tälle käyttäjälle on näkyvissä etusivulla "admin-paneeli", jonka kautta voidaan lisätä uusia elokuvia sovellukseen, hallinnoida elokuvia ja käyttäjiä sekä generoida [tiedostosta](https://github.com/rvrauhala/film-review-app/blob/main/data/countries.csv) maalistaus sovelluksen käyttöön. Ylläpitäjätunnuksella voi testata vain ylläpitäjälle tarkoitettuja toimintoja. Huomaathan, että maalistauksen generoiva painike ei toimi Herokussa enää toista kertaa, sillä sitä on jo painettu.
 
 Rekisteröitymis- ja kirjautumistoimintojen testaamista varten sekä uusien elokuva-arvosteluiden lisäämistä varten kannattaa luoda uusi käyttäjätunnus, joka on oletuksena tavallinen käyttäjä.
 
