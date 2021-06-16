@@ -18,46 +18,47 @@ To test regular user functionality, you may create a new account by clicking "Re
 
 Please do not submit any offensive content or sensitive data.
 
-## Ominaisuudet
+## Features
 
-- Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen
-- Käyttäjä on joko tavallinen käyttäjä tai ylläpitäjä
-- Tavallinen käyttäjä voi kirjoittaa elokuva-arvosteluita
-- Ylläpitäjä voi hallinnoida elokuvia:
-  - Uuden elokuvan lisääminen
-  - Elokuvan poistaminen näkyvistä
-  - Poistetun elokuvan palauttaminen näkyville
-- Ylläpitäjä voi hallinnoida käyttäjiä:
-  - Tavallinen käyttäjä voidaan ylentää ylläpitäjäksi
-  - Tavallinen käyttäjä voidaan asettaa porttikieltoon
-    - Porttikiellon saanut käyttäjä ei voi enää kirjautua sisään
-    - Porttikiellon saaneen käyttäjän kirjoittamat arvostelut poistuvat näkyviltä eivätkä enää vaikuta tilastoihin
-    - Käyttäjän saama porttikielto voidaan myös perua
-- Ylläpitäjä voi generoida listan maista ja maanosista
-  - Maalistausta käytetään kotimaan asettamiseksi käyttäjille, elokuville, ohjaajille ja käsikirjoittajille
-- Sivustolla on tilastosivu, johon kootaan tietokannasta keskeisiä tietoja
-- Etusivulla listataan tietokannasta löytyvät elokuvat
-- Elokuvan nimeä klikkaamalla saadaan näkyviin lisää tietoa elokuvasta:
-  - Nimi (name)
-  - Kuvaus (description)
-  - Julkaisuvuosi (year)
-  - Julkaisumaa (country)
-  - Kieli (language)
-  - Lajityyppi (genre)
-  - Ohjaaja (director)
-  - Käsikirjoittaja (screenwriter)
-- Käyttäjä voi antaa arvion elokuvasta ja lukea muiden antamia arvioita
-  - Numeroarvosana 1-10
-    - Numeroarvosanoista lasketaan keskiarvo, joka on elokuvan "arvosana" sivustolla
-  - Sanallinen arvostelu
-- Etusivun elokuvalistaus on mahdollista laittaa järjestykseen:
-  - Aakkosjärjestyksessä (oletus)
-  - Arvosanan perusteella parhaimmasta huonoimpaan
-  - Arvosanan perusteella huonoimmasta parhaimpaan
-  - Vuoden perusteella uusimmasta vanhimpaan
-  - Vuoden perusteella vanhimmasta uusimpaan
-- Elokuvia voi hakea:
-  - Nimen perusteella
+- A user may create a new account, log in and log out
+- A user is either a regular *user* or an *admin*
+- A regular user may write film reviews
+- An admin may manage films
+  - Adding a new film to the database
+  - Deleting (hiding) a film
+  - Restoring a deleted film and its data
+- An admin may manage users
+  - A regular user may get promoted to an administrator
+  - A regular user may get banned
+    - A banned user can no longer log in
+    - All reviews written by a banned user are hidden and no longer affect any statistics
+    - A banned user may also get unbanned and their reviews get restored
+- An admin may generate a list of countries and continents
+  - The country list is used by users, films, directors and screenwriters
+- The statistics page contains relevant stats about the application
+- The front page contains a list of all films in the database
+- Clicking the name of a film on the front page will provide you with more information about the film:
+  - Name
+  - Description
+  - Year
+  - Country
+  - Language
+  - Genre
+  - Director
+  - Screenwriter
+- A user may review a film and read reviews written by other users
+  - A numerical grade
+    - An integer with a value between 1 to 10
+    - An average grade is counted for each film based on the reviews it has gotten
+  - A written review
+- The film list on the front page may be sorted
+  - In alphabetical order (default)
+  - Based on the average grade, highest rated first
+  - Based on the average grade, lowest rated first
+  - Based on the year, newest first
+  - Based on the year, oldest first
+- Users may search for films on the front page
+  - By name
 
 ## Data
 - Valtioiden tiedot: [un.org](https://www.un.org/en/about-us/member-states)
