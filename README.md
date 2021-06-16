@@ -8,13 +8,15 @@
 
 (To-do)
 
-## Testaaminen
+## How to test
 
-Sovellusta voi testata osoitteessa https://rvr-fra.herokuapp.com/
+A demo version of *Film review app* can be found on [Heroku](https://rvr-fra.herokuapp.com/). You may use it to see how the application works without installing it on your machine.
 
-Sovelluksessa on yksi julkinen pääkäyttäjä, jonka tunnus on **admin** ja salasana **password**. Tälle käyttäjälle on näkyvissä etusivulla "admin-paneeli", jonka kautta voidaan lisätä uusia elokuvia sovellukseen, hallinnoida elokuvia ja käyttäjiä sekä generoida [tiedostosta](https://github.com/rvrauhala/film-review-app/blob/main/data/countries.csv) maalistaus sovelluksen käyttöön. Ylläpitäjätunnuksella voi testata vain ylläpitäjälle tarkoitettuja toimintoja. Huomaathan, että maalistauksen generoiva painike ei toimi Herokussa enää toista kertaa, sillä sitä on jo painettu.
+The application has one public administrator account for testing purposes. The username is **admin** and the password is **password**. After logging in, on the front page there should be an admin panel only visible to admin accounts. By using the admin panel you may perform administrative actions such as adding new films to the database, generating a country list (this only works once though) or managing user accounts.
 
-Rekisteröitymis- ja kirjautumistoimintojen testaamista varten sekä uusien elokuva-arvosteluiden lisäämistä varten kannattaa luoda uusi käyttäjätunnus, joka on oletuksena tavallinen käyttäjä.
+To test regular user functionality, you may create a new account by clicking "Register" on the front page and choosing a username, password and your country.
+
+Please do not submit any offensive content or sensitive data.
 
 ## Ominaisuudet
 
