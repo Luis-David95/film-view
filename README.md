@@ -4,7 +4,7 @@ Sovelluksessa listataan tietoa elokuvista, joille käyttäjät voivat kirjoittaa
 
 ## Testaaminen
 
-Sovellusta voi testata osoitteessa https://tsoha-elokuvasovellus.herokuapp.com/
+Sovellusta voi testata osoitteessa https://rvr-fra.herokuapp.com/
 
 Sovelluksessa on yksi julkinen pääkäyttäjä, jonka tunnus on **admin** ja salasana **password**. Tälle käyttäjälle on näkyvissä etusivulla "admin-paneeli", jonka kautta voidaan lisätä uusia elokuvia sovellukseen, hallinnoida elokuvia ja käyttäjiä sekä generoida [tiedostosta](https://github.com/rvrauhala/tsoha-elokuvasovellus/blob/main/data/countries.csv) maalistaus sovelluksen käyttöön. Ylläpitäjätunnuksella voi testata vain ylläpitäjälle tarkoitettuja toimintoja. Huomaathan, että maalistauksen generoiva painike ei toimi Herokussa enää toista kertaa, sillä sitä on jo painettu.
 
