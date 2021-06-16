@@ -1,6 +1,8 @@
-# Elokuva-arvostelusovellus
+# Film review app
 
-Sovelluksessa listataan tietoa elokuvista, joille käyttäjät voivat kirjoittaa arvosteluita. Jokainen käyttäjätunnus on tavallinen käyttäjä (user) tai ylläpitäjä (admin). Ylläpitäjällä on oikeus hallinnoida käyttäjätilejä ja elokuvia sekä niiden tietoja. Sovelluksen käyttöliittymä on englanninkielinen ja sen nimi on yksinkertaisesti Film review app tai lyhennettynä FRA. Katso tarkempi ominaisuuslista alempana.
+## Summary
+
+**Film review app** is a simple web application for writing film reviews. Every user account is either a regular *user* or an *admin* with additional privileges. Administrators may add new films to the database and ban/unban or promote regular users. The application was developed using the [Flask](https://palletsprojects.com/p/flask/) web application framework. A [PostgreSQL](https://www.postgresql.org/) database is used to store all relevant information needed by the application. Also, a demo version of the app is hosted on [Heroku](https://www.heroku.com/home).
 
 ## Testaaminen
 
