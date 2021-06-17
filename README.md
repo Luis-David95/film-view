@@ -22,9 +22,12 @@ $ source venv/bin/activate
 # Install dependencies
 $ pip install -r requirements.txt
 
-# Create a .env file to store secret environment variables, replace {url} and {key} with your own values
-# Database url may depend on how the database has been set up, see PostgreSQL documentation for more info
-# Secret key should be a random string of bytes, see Flask documentation for more info
+# Create a .env file to store secret environment variables,
+# replace {url} and {key} with your own values
+# Database url may depend on how the database has been set up,
+# see PostgreSQL documentation for more info
+# Secret key should be a random string of bytes,
+# see Flask documentation for more info
 $ touch .env
 $ echo "DATABASE_URL={url}" >> .env
 $ echo "SECRET_KEY={key}" >> .env
