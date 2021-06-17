@@ -6,7 +6,37 @@
 
 ## How to install
 
-(To-do)
+You may run the application on your local Linux machine by following these instructions. Make sure you have properly installed and set up PostgreSQL and know how to run it first. Python and Git should also be installed before proceeding.
+
+```bash
+# Clone the repository
+$ git clone https://github.com/rvrauhala/film-review-app
+
+# Change directory
+$ cd film-review-app
+
+# Create a virtual environment for the project and activate it
+$ python -m venv venv
+$ source venv/bin/activate
+
+# Install dependencies
+$ pip install -r requirements.txt
+
+# Create a .env file to store secret environment variables, replace {url} and {key} with your own values
+# Database url may depend on how the database has been set up, see PostgreSQL documentation for more info
+# Secret key should be a random string of bytes, see Flask documentation for more info
+$ touch .env
+$ echo "DATABASE_URL={url}" >> .env
+$ echo "SECRET_KEY={key}" >> .env
+
+# Set up database
+$ cd db
+$ psql < schema.sql
+$ cd ..
+
+# Run the application
+$ flask run
+```
 
 ## How to test
 
