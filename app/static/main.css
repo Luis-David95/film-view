@@ -1,9 +1,9 @@
 body {
-  margin: auto;
-  max-width: 90%;
-  margin-top: 10px;
-  background-color: #05121c;
   color: white;
+  background-color: #05121c;
+  margin: auto;
+  margin-top: 10px;
+  max-width: 90%;
 }
 
 a:link {
@@ -58,8 +58,8 @@ a.secondary {
 }
 
 hr.divider {
-  border-top: 1px solid #0d2b42;
   border-bottom: 1px solid #0d2b42;
+  border-top: 1px solid #0d2b42;
 }
 
 .container {
@@ -119,6 +119,6 @@ a.footer {
 table, th, td {
   border: 1px solid #103f64;
   border-collapse: collapse;
-  padding: 10px;
   margin-bottom: 20px;
+  padding: 10px;
 }
