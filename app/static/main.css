@@ -16,19 +16,11 @@ a:hover {
   text-decoration: underline;
 }
 
-a.negative:link {
+a.negative:link, a.negative:visited  {
   color: #f73441;
 }
 
-a.negative:visited {
-  color: #f73441;
-}
-
-a.positive:link {
-  color: #4bf734;
-}
-
-a.positive:visited {
+a.positive:link, a.positive:visited {
   color: #4bf734;
 }
 
