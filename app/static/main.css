@@ -6,13 +6,8 @@ body {
   max-width: 90%;
 }
 
-a:link {
+a:link, a:visited{
   color: #8bb4f7;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #9fc0f5;
   text-decoration: none;
 }
 
