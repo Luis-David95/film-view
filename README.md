@@ -33,9 +33,9 @@ $ echo "DATABASE_URL={url}" >> .env
 $ echo "SECRET_KEY={key}" >> .env
 
 # Set up database
-$ cd db
+$ cd doc/db
 $ psql < schema.sql
-$ cd ..
+$ cd ../..
 
 # Run the application
 $ flask run
