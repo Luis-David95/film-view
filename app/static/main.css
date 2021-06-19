@@ -45,8 +45,7 @@ a.secondary {
 }
 
 hr.divider {
-  border-bottom: 1px solid #0d2b42;
-  border-top: 1px solid #0d2b42;
+  border: 1px solid #0d2b42;
 }
 
 .container {
