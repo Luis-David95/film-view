@@ -13,6 +13,7 @@ def get_list():
 def send(name, description, country_id):
     sql = "INSERT INTO directors (name, description, country_id) " \
           "VALUES (:name, :description, :country_id)"
-    db.session.execute(sql, {"name":name, "description":description, "country_id":country_id})
+    db.session.execute(sql, {"name":name, "description":description,
+                             "country_id":country_id})
     db.session.commit()
     return True
