@@ -4,7 +4,8 @@ from flask import abort, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 def login(username, password):
-    sql = "SELECT password, id, username, banned FROM users WHERE username=:username"
+    sql = "SELECT password, id, username, banned " \
+          "FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
     banned = user[3]
@@ -37,9 +38,11 @@ def logout():
 def register(username, password, country_id):
     hash_value = generate_password_hash(password)
     try:
-        sql = "INSERT INTO users (username, password, admin, banned, country_id, registered) " \
-              "VALUES (:username, :password, 0, 0, :country_id, NOW())"
-        db.session.execute(sql, {"username":username, "password":hash_value, "country_id":country_id})
+        sql = "INSERT INTO users (username, password, admin, banned, " \
+              "country_id, registered) VALUES (:username, :password, 0, 0, " \
+              ":country_id, NOW())"
+        db.session.execute(sql, {"username":username, "password":hash_value,
+                                 "country_id":country_id})
         db.session.commit()
     except:
         return False
@@ -95,17 +98,20 @@ def count_banned():
     return result.fetchone()[0]
 
 def oldest_user():
-    sql = "SELECT username FROM users GROUP BY username, registered ORDER BY registered ASC LIMIT 1"
+    sql = "SELECT username FROM users GROUP BY username, registered " \
+          "ORDER BY registered ASC LIMIT 1"
     result = db.session.execute(sql)
     return result.fetchone()[0]
 
 def newest_user():
-    sql = "SELECT username FROM users GROUP BY username, registered ORDER BY registered DESC LIMIT 1"
+    sql = "SELECT username FROM users GROUP BY username, registered " \
+          "ORDER BY registered DESC LIMIT 1"
     result = db.session.execute(sql)
     return result.fetchone()[0]
 
 def last_to_login():
-    sql = "SELECT username FROM users GROUP BY username, last_login ORDER BY last_login DESC LIMIT 1"
+    sql = "SELECT username FROM users GROUP BY username, last_login " \
+          "ORDER BY last_login DESC LIMIT 1"
     result = db.session.execute(sql)
     return result.fetchone()[0]
 
