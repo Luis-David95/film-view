@@ -1,4 +1,5 @@
-from app import app, countries, directors, error, films, genres, languages, reviews, screenwriters, users
+from app import app, countries, directors, error
+from app import films, genres, languages, reviews, screenwriters, users
 from flask import abort, redirect, render_template, request, session, url_for
 
 @app.route("/")
@@ -37,10 +38,15 @@ def stats():
     genre_count = genres.count()
     director_count = directors.count()
     screenwriter_count = screenwriters.count()
-    return render_template("statistics.html", users=user_count, admins=admin_count, banned=banned_count, most_active=most_active,
-                                              oldest=oldest_user, newest=newest_user, last_to_login=last_to_login, films=film_count,
-                                              reviews=review_count, highest=highest, lowest=lowest, average=average, countries=country_count,
-                                              languages=language_count, genres=genre_count, directors=director_count, screenwriters=screenwriter_count)
+    return render_template("statistics.html", users=user_count,
+                           admins=admin_count, banned=banned_count,
+                           most_active=most_active, oldest=oldest_user,
+                           newest=newest_user, last_to_login=last_to_login,
+                           films=film_count, reviews=review_count,
+                           highest=highest, lowest=lowest, average=average,
+                           countries=country_count, languages=language_count,
+                           genres=genre_count, directors=director_count,
+                           screenwriters=screenwriter_count)
 
 @app.route("/login", methods=["get","post"])
 def login():
@@ -70,7 +76,7 @@ def register():
         try:
             country_id = int(request.form["country_id"])
         except:
-            return error.message("Please select a country from the list")
+            return error.message("Select a country from the list")
         if users.register(username, password, country_id):
             return redirect("/")
         else:
@@ -85,8 +91,10 @@ def new_film():
         genre_list = genres.get_list()
         director_list = directors.get_list()
         screenwriter_list = screenwriters.get_list()
-        return render_template("new_film.html", countries=country_list, languages=language_list, genres=genre_list,
-                                                directors=director_list, screenwriters=screenwriter_list)
+        return render_template("new_film.html", countries=country_list,
+                               languages=language_list, genres=genre_list,
+                               directors=director_list,
+                               screenwriters=screenwriter_list)
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
             abort(403)
@@ -105,15 +113,15 @@ def new_film():
         except ValueError:
             return error.message("Year cannot be empty")
         if year < 1888 or year > 2021:
-            return error.message("Please enter a correct year")
+            return error.message("Enter a correct year")
         try:
             country_id = int(request.form["country_id"])
         except:
-            return error.message("Please select a country from the list")
+            return error.message("Select a country from the list")
         try:
             language_id = int(request.form["language_id"])
         except:
-            return error.message("Please select a language from the list or add new one")
+            return error.message("Select a language from the list or add new")
         if language_id == 0:
             new_language = request.form["new_language"]
             if len(new_language) == 0:
@@ -125,7 +133,7 @@ def new_film():
         try:
             genre_id = int(request.form["genre_id"])
         except:
-            return error.message("Please select a genre from the list or add new one")
+            return error.message("Select a genre from the list or add new")
         if genre_id == 0:
             new_genre = request.form["new_genre"]
             genres.send(new_genre)
@@ -133,12 +141,13 @@ def new_film():
         try:
             director_id = int(request.form["director_id"])
         except:
-            return error.message("Please select a director from the list or add new one")
+            return error.message("Select a director from the list or add new")
         try:
             screenwriter_id = int(request.form["screenwriter_id"])
         except:
-            return error.message("Please select a screenwriter from the list or add new one")
-        if films.send(name, description, year, country_id, language_id, genre_id, director_id, screenwriter_id):
+            return error.message("Select a writer from the list or add new")
+        if films.send(name, description, year, country_id, language_id,
+                      genre_id, director_id, screenwriter_id):
             return redirect("/")
         else:
             return error.message("Sending failed")
@@ -165,7 +174,7 @@ def new_director():
         try:
             country_id = int(request.form["country_id"])
         except:
-            return error.message("Please select a country from the list")
+            return error.message("Select a country from the list")
         if directors.send(name, description, country_id):
             return redirect("/new_film")
         else:
@@ -193,7 +202,7 @@ def new_screenwriter():
         try:
             country_id = int(request.form["country_id"])
         except:
-            return error.message("Please select a country from the list")
+            return error.message("Select a country from the list")
         if screenwriters.send(name, description, country_id):
             return redirect("/new_film")
         else:
@@ -292,14 +301,15 @@ def country():
         users.require_status(1)
         count = countries.count()
         country_list = countries.get_details()
-        return render_template("countries.html", count=count, countries=country_list)
+        return render_template("countries.html", count=count,
+                               countries=country_list)
     if request.method == "POST":
         if session["csrf_token"] != request.form["csrf_token"]:
             abort(403)
         if countries.create_list():
             return redirect("/countries")
         else:
-            return error.message("Creating country list failed, perhaps it already exists?")
+            return error.message("Creating country list failed")
 
 @app.route("/film/<int:id>")
 def film(id):
@@ -309,7 +319,7 @@ def film(id):
     film_list = films.get_details(id)
     grade_details = reviews.get_grade_details(id)
     return render_template("film.html", id=id, name=name, reviews=review_list,
-                                        details=film_list, grade_details=grade_details)
+                           details=film_list, grade_details=grade_details)
 
 @app.route("/film/<int:id>/new_review", methods=["get","post"])
 def new_review(id):
