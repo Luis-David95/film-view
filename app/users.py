@@ -3,6 +3,66 @@ from app.db import db
 from flask import abort, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
+def ban(id):
+    sql = "UPDATE users SET banned=1 WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
+
+def count():
+    sql = "SELECT COUNT(*) FROM users"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def count_admins():
+    sql = "SELECT COUNT(*) FROM users WHERE admin=1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def count_banned():
+    sql = "SELECT COUNT(*) FROM users WHERE banned=1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def exists(id):
+    sql = "SELECT COUNT(1) FROM users WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    if result.fetchone()[0] == 0:
+        abort(404)
+
+def get_list():
+    sql = "SELECT u.id, u.username, u.admin, u.banned, " \
+          "TO_CHAR(u.registered, 'DD/MM/YYYY'), " \
+          "TO_CHAR(u.last_login, 'DD/MM/YYYY - HH24:MI'), c.name, c.code " \
+          "FROM users AS u, countries AS c " \
+          "WHERE c.id=u.country_id " \
+          "ORDER BY u.id"
+    result = db.session.execute(sql)
+    return result.fetchall()
+
+def get_name(id):
+    sql = "SELECT username FROM users WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchone()[0]
+
+def get_user_id():
+    return session.get("user_id", 0)
+
+def is_admin(username):
+    sql = "SELECT admin FROM users WHERE username=:username"
+    result = db.session.execute(sql, {"username":username})
+    admin = result.fetchone()
+    if not admin or admin[0] == 0:
+        return False
+    else:
+        return True
+
+def last_to_login():
+    sql = "SELECT username FROM users GROUP BY username, last_login " \
+          "ORDER BY last_login DESC LIMIT 1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
 def login(username, password):
     sql = "SELECT password, id, username, banned " \
           "FROM users WHERE username=:username"
@@ -35,6 +95,24 @@ def logout():
     del session["is_admin"]
     del session["csrf_token"]
 
+def newest_user():
+    sql = "SELECT username FROM users GROUP BY username, registered " \
+          "ORDER BY registered DESC LIMIT 1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def oldest_user():
+    sql = "SELECT username FROM users GROUP BY username, registered " \
+          "ORDER BY registered ASC LIMIT 1"
+    result = db.session.execute(sql)
+    return result.fetchone()[0]
+
+def promote(id):
+    sql = "UPDATE users SET admin=1 WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
+
 def register(username, password, country_id):
     hash_value = generate_password_hash(password)
     try:
@@ -48,90 +126,6 @@ def register(username, password, country_id):
         return False
     return login(username, password)
 
-def get_list():
-    sql = "SELECT u.id, u.username, u.admin, u.banned, " \
-          "TO_CHAR(u.registered, 'DD/MM/YYYY'), " \
-          "TO_CHAR(u.last_login, 'DD/MM/YYYY - HH24:MI'), c.name, c.code " \
-          "FROM users AS u, countries AS c " \
-          "WHERE c.id=u.country_id " \
-          "ORDER BY u.id"
-    result = db.session.execute(sql)
-    return result.fetchall()
-
-def exists(id):
-    sql = "SELECT COUNT(1) FROM users WHERE id=:id"
-    result = db.session.execute(sql, {"id":id})
-    if result.fetchone()[0] == 0:
-        abort(404)
-
-def promote(id):
-    sql = "UPDATE users SET admin=1 WHERE id=:id"
-    db.session.execute(sql, {"id":id})
-    db.session.commit()
-    return True
-
-def ban(id):
-    sql = "UPDATE users SET banned=1 WHERE id=:id"
-    db.session.execute(sql, {"id":id})
-    db.session.commit()
-    return True
-
-def unban(id):
-    sql = "UPDATE users SET banned=0 WHERE id=:id"
-    db.session.execute(sql, {"id":id})
-    db.session.commit()
-    return True
-
-def count():
-    sql = "SELECT COUNT(*) FROM users"
-    result = db.session.execute(sql)
-    return result.fetchone()[0]
-
-def count_admins():
-    sql = "SELECT COUNT(*) FROM users WHERE admin=1"
-    result = db.session.execute(sql)
-    return result.fetchone()[0]
-
-def count_banned():
-    sql = "SELECT COUNT(*) FROM users WHERE banned=1"
-    result = db.session.execute(sql)
-    return result.fetchone()[0]
-
-def oldest_user():
-    sql = "SELECT username FROM users GROUP BY username, registered " \
-          "ORDER BY registered ASC LIMIT 1"
-    result = db.session.execute(sql)
-    return result.fetchone()[0]
-
-def newest_user():
-    sql = "SELECT username FROM users GROUP BY username, registered " \
-          "ORDER BY registered DESC LIMIT 1"
-    result = db.session.execute(sql)
-    return result.fetchone()[0]
-
-def last_to_login():
-    sql = "SELECT username FROM users GROUP BY username, last_login " \
-          "ORDER BY last_login DESC LIMIT 1"
-    result = db.session.execute(sql)
-    return result.fetchone()[0]
-
-def get_user_id():
-    return session.get("user_id", 0)
-
-def get_name(id):
-    sql = "SELECT username FROM users WHERE id=:id"
-    result = db.session.execute(sql, {"id":id})
-    return result.fetchone()[0]
-
-def is_admin(username):
-    sql = "SELECT admin FROM users WHERE username=:username"
-    result = db.session.execute(sql, {"username":username})
-    admin = result.fetchone()
-    if not admin or admin[0] == 0:
-        return False
-    else:
-        return True
-
 def require_status(level):
     if level == 0:
         id = get_user_id()
@@ -142,3 +136,9 @@ def require_status(level):
             abort(403)
     else:
         abort(500)
+
+def unban(id):
+    sql = "UPDATE users SET banned=0 WHERE id=:id"
+    db.session.execute(sql, {"id":id})
+    db.session.commit()
+    return True
