@@ -36,11 +36,7 @@ a.positive:link, a.positive:visited {
   width: 300px;
 }
 
-.secondary {
-  color: #437175;
-}
-
-a.secondary {
+.secondary, a.secondary  {
   color: #437175;
 }
 
@@ -94,11 +90,7 @@ hr.divider {
   width: 90%;
 }
 
-.footer {
-  color: #103f64;
-}
-
-a.footer {
+.footer, a.footer {
   color: #103f64;
 }
 
