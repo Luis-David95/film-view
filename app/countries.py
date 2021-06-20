@@ -14,8 +14,8 @@ def create_list():
     if result.fetchone()[0] > 0:
         return False
 
-    sql = "INSERT INTO continents (name) VALUES " \
-          "('Africa'), ('Asia'), ('Europe'), ('North America'), ('South America'), ('Oceania')"
+    sql = "INSERT INTO continents (name) VALUES ('Africa'), ('Asia'), " \
+          "('Europe'), ('North America'), ('South America'), ('Oceania')"
     db.session.execute(sql)
     db.session.commit()
 
@@ -37,8 +37,10 @@ def create_list():
                 continent_id = 5
             elif row[0] == "OC":
                 continent_id = 6
-            sql = "INSERT INTO countries (name, code, continent_id) VALUES (:name, :code, :continent_id)"
-            db.session.execute(sql, {"name":name, "code":code, "continent_id":continent_id})
+            sql = "INSERT INTO countries (name, code, continent_id) " \
+                  "VALUES (:name, :code, :continent_id)"
+            db.session.execute(sql, {"name":name, "code":code,
+                                     "continent_id":continent_id})
         db.session.commit()
 
     return True
