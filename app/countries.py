@@ -19,8 +19,8 @@ def create_list():
     db.session.execute(sql)
     db.session.commit()
 
-    with open('data/countries.csv') as file:
-        reader = csv.reader(file, delimiter=',')
+    with open("data/countries.csv") as file:
+        reader = csv.reader(file, delimiter=",")
         for row in reader:
             name = row[2]
             code = row[1]
