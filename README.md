@@ -81,7 +81,7 @@ Please do not submit any offensive content or sensitive data.
   - Screenwriter
 - A user may review a film and read reviews written by other users
   - A numerical grade
-    - An integer with a value between 1 to 10
+    - An integer with a value between 1 and 10
     - An average grade is counted for each film based on the reviews it has gotten
   - A written review
 - The film list on the front page may be sorted
