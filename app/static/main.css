@@ -6,7 +6,7 @@ body {
   max-width: 90%;
 }
 
-a:link, a:visited{
+a:link, a:visited {
   color: #8bb4f7;
   text-decoration: none;
 }
@@ -16,7 +16,7 @@ a:hover {
   text-decoration: underline;
 }
 
-a.negative:link, a.negative:visited  {
+a.negative:link, a.negative:visited {
   color: #f73441;
 }
 
@@ -36,7 +36,7 @@ a.positive:link, a.positive:visited {
   width: 300px;
 }
 
-.secondary, a.secondary  {
+.secondary, a.secondary {
   color: #437175;
 }
 
