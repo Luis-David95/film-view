@@ -96,8 +96,8 @@ def new_film():
                                directors=director_list,
                                screenwriters=screenwriter_list)
     if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+        token = request.form["csrf_token"]
+        users.check_token(token)
         name = request.form["name"]
         if len(name) == 0:
             return error.message("Name cannot be empty")
@@ -159,8 +159,8 @@ def new_director():
         country_list = countries.get_list()
         return render_template("new_director.html", countries=country_list)
     if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+        token = request.form["csrf_token"]
+        users.check_token(token)
         name = request.form["name"]
         if len(name) == 0:
             return error.message("Name cannot be empty")
@@ -187,8 +187,8 @@ def new_screenwriter():
         country_list = countries.get_list()
         return render_template("new_screenwriter.html", countries=country_list)
     if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+        token = request.form["csrf_token"]
+        users.check_token(token)
         name = request.form["name"]
         if len(name) == 0:
             return error.message("Name cannot be empty")
@@ -222,8 +222,8 @@ def delete(id):
         name = films.get_name(id)
         return render_template("delete.html", name=name, id=id)
     if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+        token = request.form["csrf_token"]
+        users.check_token(token)
         if films.delete(id):
             return redirect("/")
         else:
@@ -237,8 +237,8 @@ def restore(id):
             name = films.get_name(id)
             return render_template("restore.html", name=name, id=id)
     if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+        token = request.form["csrf_token"]
+        users.check_token(token)
         if films.restore(id):
             return redirect("/")
         else:
@@ -258,8 +258,8 @@ def promote(id):
         name = users.get_name(id)
         return render_template("promote.html", name=name, id=id)
     if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+        token = request.form["csrf_token"]
+        users.check_token(token)
         if users.promote(id):
             return redirect("/users")
         else:
@@ -273,8 +273,8 @@ def ban(id):
         name = users.get_name(id)
         return render_template("ban.html", name=name, id=id)
     if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
+        token = request.form["csrf_token"]
+        users.check_token(token)
         if users.ban(id):
             return redirect("/users")
         else:
