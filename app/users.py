@@ -9,6 +9,10 @@ def ban(id):
     db.session.commit()
     return True
 
+def check_token(token):
+    if session["csrf_token"] != token:
+        abort(403)
+
 def count():
     sql = "SELECT COUNT(*) FROM users"
     result = db.session.execute(sql)
