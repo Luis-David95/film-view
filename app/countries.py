@@ -1,4 +1,5 @@
 import csv
+
 from app.db import db
 
 def count():

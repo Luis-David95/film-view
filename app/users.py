@@ -1,7 +1,9 @@
 import secrets
-from app.db import db
+
 from flask import abort, session
 from werkzeug.security import check_password_hash, generate_password_hash
+
+from app.db import db
 
 def ban(id):
     sql = "UPDATE users SET banned=1 WHERE id=:id"

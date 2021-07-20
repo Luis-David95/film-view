@@ -1,6 +1,7 @@
+from flask import abort, redirect, render_template, request, session, url_for
+
 from app import app, countries, directors, error
 from app import films, genres, languages, reviews, screenwriters, users
-from flask import abort, redirect, render_template, request, session, url_for
 
 @app.route("/")
 def index():

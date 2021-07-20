@@ -1,5 +1,5 @@
-from app.db import db
 from app import users
+from app.db import db
 
 def count():
     sql = "SELECT COUNT(*) FROM reviews AS r, films AS f, users AS u " \

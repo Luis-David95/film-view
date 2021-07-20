@@ -1,4 +1,5 @@
 from flask import abort
+
 from app.db import db
 
 def count():
