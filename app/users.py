@@ -86,9 +86,9 @@ def login(username, password):
           "FROM users WHERE username=:username"
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
-    banned = user[3]
     if user == None:
         return False
+    banned = user[3]
     if banned == 1:
         return False
     else:
