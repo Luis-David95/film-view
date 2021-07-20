@@ -2,10 +2,12 @@ from flask import abort
 
 from app.db import db
 
+
 def count():
     sql = "SELECT COUNT(*) FROM films WHERE visible=1"
     result = db.session.execute(sql)
     return result.fetchone()[0]
+
 
 def delete(id):
     sql = "UPDATE films SET visible=0 WHERE id=:id"
@@ -13,11 +15,13 @@ def delete(id):
     db.session.commit()
     return True
 
+
 def exists(id):
     sql = "SELECT COUNT(1) FROM films WHERE id=:id AND visible=1"
     result = db.session.execute(sql, {"id":id})
     if result.fetchone()[0] == 0:
         abort(404)
+
 
 def get_all():
     sql = "SELECT f.id, f.visible, f.name, f.description, f.year " \
@@ -25,6 +29,7 @@ def get_all():
           "ORDER BY f.name"
     result = db.session.execute(sql)
     return result.fetchall()
+
 
 def get_details(id):
     sql = "SELECT f.id, f.name, f.description, f.year, c.name, l.name, " \
@@ -36,10 +41,12 @@ def get_details(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 
+
 def get_name(id):
     sql = "SELECT name FROM films WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()[0]
+
 
 def get_search_results(query):
     sql = "(SELECT f.id AS s_id, f.visible, f.name AS s_name, " \
@@ -57,6 +64,7 @@ def get_search_results(query):
     result = db.session.execute(sql, {"query":"%"+query+"%",
                                       "queryGROUP":"%"+query+"%"})
     return result.fetchall()
+
 
 def get_visible(sort_by):
     sql = "(SELECT f.id AS s_id, f.visible, f.name AS s_name, " \
@@ -83,11 +91,13 @@ def get_visible(sort_by):
     result = db.session.execute(sql)
     return result.fetchall()
 
+
 def restore(id):
     sql = "UPDATE films SET visible=1 WHERE id=:id"
     db.session.execute(sql, {"id":id})
     db.session.commit()
     return True
+
 
 def send(name, description, year, country_id, language_id,
          genre_id, director_id, screenwriter_id):
@@ -104,6 +114,7 @@ def send(name, description, year, country_id, language_id,
                              "screenwriter_id":screenwriter_id})
     db.session.commit()
     return True
+
 
 def visible(id):
     sql = "SELECT visible FROM films WHERE id=:id"

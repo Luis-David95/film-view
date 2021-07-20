@@ -2,10 +2,12 @@ import csv
 
 from app.db import db
 
+
 def count():
     sql = "SELECT COUNT(*) FROM countries"
     result = db.session.execute(sql)
     return result.fetchone()[0]
+
 
 def create_list():
     sql = "SELECT COUNT(*) FROM continents"
@@ -46,12 +48,14 @@ def create_list():
 
     return True
 
+
 def get_details():
     sql = "SELECT ct.code, ct.name, cn.name " \
           "FROM countries AS ct, continents AS cn " \
           "WHERE cn.id=ct.continent_id"
     result = db.session.execute(sql)
     return result.fetchall()
+
 
 def get_list():
     sql = "SELECT id, name FROM countries ORDER BY continent_id, name"

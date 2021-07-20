@@ -3,10 +3,12 @@ from flask import abort, redirect, render_template, request, session, url_for
 from app import app, countries, directors, error
 from app import films, genres, languages, reviews, screenwriters, users
 
+
 @app.route("/")
 def index():
     film_list = films.get_visible(0)
     return render_template("index.html", films=film_list)
+
 
 @app.route("/sort")
 def sort():
@@ -14,11 +16,13 @@ def sort():
     film_list = films.get_visible(sort_by)
     return render_template("index.html", films=film_list)
 
+
 @app.route("/search")
 def search():
     query = request.args["query"]
     film_list = films.get_search_results(query)
     return render_template("index.html", films=film_list)
+
 
 @app.route("/statistics")
 def stats():
@@ -49,6 +53,7 @@ def stats():
                            genres=genre_count, directors=director_count,
                            screenwriters=screenwriter_count)
 
+
 @app.route("/login", methods=["get","post"])
 def login():
     if request.method == "GET":
@@ -61,10 +66,12 @@ def login():
         else:
             return error.message("Logging in failed")
 
+
 @app.route("/logout")
 def logout():
     users.logout()
     return redirect("/")
+
 
 @app.route("/register", methods=["get","post"])
 def register():
@@ -82,6 +89,7 @@ def register():
             return redirect("/")
         else:
             return error.message("Registration failed")
+
 
 @app.route("/new_film", methods=["get","post"])
 def new_film():
@@ -153,6 +161,7 @@ def new_film():
         else:
             return error.message("Sending failed")
 
+
 @app.route("/new_director", methods=["get","post"])
 def new_director():
     if request.method == "GET":
@@ -180,6 +189,7 @@ def new_director():
             return redirect("/new_film")
         else:
             return error.message("Sending failed")
+
 
 @app.route("/new_screenwriter", methods=["get","post"])
 def new_screenwriter():
@@ -209,11 +219,13 @@ def new_screenwriter():
         else:
             return error.message("Sending failed")
 
+
 @app.route("/films/")
 def manage_films():
     users.require_status(1)
     film_list = films.get_all()
     return render_template("films.html", films=film_list)
+
 
 @app.route("/delete/<int:id>", methods=["get","post"])
 def delete(id):
@@ -230,6 +242,7 @@ def delete(id):
         else:
             return error.message("Deleting film failed")
 
+
 @app.route("/restore/<int:id>", methods=["get","post"])
 def restore(id):
     if request.method == "GET":
@@ -245,11 +258,13 @@ def restore(id):
         else:
             return error.message("Restoring film failed")
 
+
 @app.route("/users/")
 def manage_users():
     users.require_status(1)
     user_list = users.get_list()
     return render_template("users.html", users=user_list)
+
 
 @app.route("/promote/<int:id>", methods=["get","post"])
 def promote(id):
@@ -266,6 +281,7 @@ def promote(id):
         else:
             return error.message("Promoting user failed")
 
+
 @app.route("/ban/<int:id>", methods=["get","post"])
 def ban(id):
     if request.method == "GET":
@@ -281,6 +297,7 @@ def ban(id):
         else:
             return error.message("Banning user failed")
 
+
 @app.route("/unban/<int:id>", methods=["get","post"])
 def unban(id):
     if request.method == "GET":
@@ -295,6 +312,7 @@ def unban(id):
             return redirect("/users")
         else:
             return error.message("Banning user failed")
+
 
 @app.route("/countries", methods=["get","post"])
 def country():
@@ -312,6 +330,7 @@ def country():
         else:
             return error.message("Creating country list failed")
 
+
 @app.route("/film/<int:id>")
 def film(id):
     films.exists(id)
@@ -321,6 +340,7 @@ def film(id):
     grade_details = reviews.get_grade_details(id)
     return render_template("film.html", id=id, name=name, reviews=review_list,
                            details=film_list, grade_details=grade_details)
+
 
 @app.route("/film/<int:id>/new_review", methods=["get","post"])
 def new_review(id):

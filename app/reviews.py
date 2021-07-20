@@ -1,12 +1,14 @@
 from app import users
 from app.db import db
 
+
 def count():
     sql = "SELECT COUNT(*) FROM reviews AS r, films AS f, users AS u " \
           "WHERE f.id=r.film_id AND u.id=r.user_id " \
           "AND f.visible=1 AND u.banned=0"
     result = db.session.execute(sql)
     return result.fetchone()[0]
+
 
 def get_list(film_id):
     sql = "SELECT u.username, r.content, r.grade, " \
@@ -17,12 +19,14 @@ def get_list(film_id):
     result = db.session.execute(sql, {"film_id":film_id})
     return result.fetchall()
 
+
 def get_grade_details(film_id):
     sql = "SELECT ROUND(AVG(r.grade),1), COUNT(DISTINCT r.id) " \
           "FROM reviews AS r, films AS f, users AS u " \
           "WHERE r.film_id=:film_id AND r.user_id=u.id AND u.banned=0"
     result = db.session.execute(sql, {"film_id":film_id})
     return result.fetchall()
+
 
 def get_highest_rated():
     sql = "SELECT f.name, AVG(r.grade) AS average FROM films AS f, " \
@@ -32,6 +36,7 @@ def get_highest_rated():
     result = db.session.execute(sql)
     return result.fetchone()[0]
 
+
 def get_lowest_rated():
     sql = "SELECT f.name, AVG(r.grade) AS average FROM films AS f, " \
           "reviews AS r, users AS u WHERE f.id=r.film_id AND visible=1 " \
@@ -40,12 +45,14 @@ def get_lowest_rated():
     result = db.session.execute(sql)
     return result.fetchone()[0]
 
+
 def get_average_grade():
     sql = "SELECT ROUND(AVG(r.grade),1) FROM films AS f, reviews AS r, " \
           "users AS u WHERE f.id=r.film_id AND visible=1 " \
           "AND r.user_id=u.id AND u.banned=0"
     result = db.session.execute(sql)
     return result.fetchone()[0]
+
 
 def get_most_active_user():
     sql = "SELECT u.username " \
@@ -55,6 +62,7 @@ def get_most_active_user():
           "ORDER BY COUNT(r.grade) DESC LIMIT 1"
     result = db.session.execute(sql)
     return result.fetchone()[0]
+
 
 def send(user_id, film_id, content, grade):
     sql = "INSERT INTO reviews " \
