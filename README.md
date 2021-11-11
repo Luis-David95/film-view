@@ -10,7 +10,7 @@ You may run the application on your local Linux machine by following these instr
 
 ```bash
 # Clone the repository
-$ git clone https://github.com/rvrauhala/film-review-app
+$ git clone https://github.com/rikurauhala/film-review-app
 
 # Change directory
 $ cd film-review-app
